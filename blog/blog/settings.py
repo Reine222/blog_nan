@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     # 'api.apps.ApiConfig',
     # 'configuration.apps.configurationConfig',
+    'django_admin_generator',
 ]
 
 MIDDLEWARE = [

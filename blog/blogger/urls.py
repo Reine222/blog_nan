@@ -22,4 +22,6 @@ urlpatterns = [
     path('element', views.element, name="element"),
     path('archive', views.archive, name="archive"),
     path('single', views.single, name="single"),
+    path('inscription',views.register,name='inscription'),
+    path('login',views.login),
 ]
