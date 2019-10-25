@@ -23,5 +23,5 @@ urlpatterns = [
     path('archive', views.archive, name="archive"),
     path('single', views.single, name="single"),
     path('inscription',views.register,name='inscription'),
-    path('login',views.login),
+    path('login',views.connect, name="connect"),
 ]

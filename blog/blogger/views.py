@@ -76,7 +76,7 @@ def connect(request):
             else:
                 return redirect('dashboard')
         else:
-            return render(request, 'connexion.html')
+            return render(request, 'pages/connexion.html')
     return render(request, 'pages/connexion.html')
 @login_required(login_url='connection')
 
