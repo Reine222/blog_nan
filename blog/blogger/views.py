@@ -82,5 +82,5 @@ def connect(request):
 
 def deconection(request):
     logout(request)
-    return redirect('connection')
+    return redirect('connect')
 

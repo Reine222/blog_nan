@@ -55,7 +55,7 @@
 					<!-- own -->
 					<div class="wrap-input100 validate-input" data-validate="Name is required">
 						<span class="label-input100">fonction</span>
-						<input class="input100" type="text" name="fonction" id="contact" placeholder="000...">
+						<input class="input100" type="text" name="fonction"  placeholder="...">
 						<span class="focus-input100"></span>
 					</div>
 					<div class="wrap-input100 validate-input" data-validate="Name is required">
@@ -153,13 +153,13 @@
 	<script src="/static/register/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="/static/register/js/main.js"></script>
-	<script>
+	{% comment %} <script>
 		var contact = document.getElementById('contact');
 		var maskOptions = {
 		mask: '+{225} 00-00-00-00'
 		};
 		var mask = IMask(contact, maskOptions);
-	</script>
+	</script> {% endcomment %}
 
 </body>
 </html>
