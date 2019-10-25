@@ -40,6 +40,7 @@ class Commentaire(Model_Date):
     email = models.EmailField(max_length=50)
     sujet = models.CharField(max_length=50)
     message = models.CharField(max_length=500)
+    image = models.ImageField(upload_to='images' default='images/user.jpg')
     categorie = models.ForeignKey(Article, on_delete= models.CASCADE)
     statut = models.BooleanField(default=True)
 
