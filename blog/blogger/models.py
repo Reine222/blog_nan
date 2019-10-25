@@ -1,48 +1,43 @@
 from django.db import models
-
+from django.contrib.auth.models import User 
+from django.db.models.signals import post_save 
+from django.dispatch import receiver
 # Create your models here.
-class Model_Date(models.Model):
+
+class Category(models.Model):
+    nom = models.CharField(max_length=50)
+    standard = models.BooleanField(default=True)
     date_add = models.DateTimeField(auto_now_add=True)
     date_up = models.DateTimeField(auto_now=True)
-    class Meta:
-        abstract = True
-
-class Category(Model_Date):
-    nom = models.CharField( max_length=50)
-    image = models.ImageField(upload_to='images')
-    user = models.CharField(max_length=50) 
-    statut = models.BooleanField(default=True)
 
     def __str__(self):
         return self.nom
 
-class Tag(Model_Date):
-    nom = models.CharField( max_length=50)
-    statut = models.BooleanField(default=True)
-    
-    def __str__(self):
-        return self.nom
 
-class Article(Model_Date):
+
+class Article(models.Model):
     titre = models.CharField( max_length=200)
-    autheur = models.CharField(max_length=50)
+    user_id = models.ForeignKey(User, on_delete= models.CASCADE) 
     categorie = models.ForeignKey(Category, on_delete= models.CASCADE, related_name='article_cat')
-    tag = models.ManyToManyField(Tag, on_delete= models.CASCADE, related_name='article_tag')
     image = models.ImageField(upload_to='images')
+    description = models.CharField(max_length=200)
     contenu = models.TextField()
-    statut = models.BooleanField(default=True)
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_up = models.DateTimeField(auto_now=True)
+    standard = models.BooleanField(default=True)
 
     def __str__(self):
         return self.titre
 
-class Commentaire(Model_Date):
-    user_name= models.CharField(max_length=50)
+class Commentaire(models.Model):
+    nom= models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
+    date = models.DateTimeField()
     sujet = models.CharField(max_length=50)
     message = models.CharField(max_length=500)
-    image = models.ImageField(upload_to='images' default='images/user.jpg')
+    photo = models.ImageField(upload_to='images', default='images/user.jpg')
     categorie = models.ForeignKey(Article, on_delete= models.CASCADE)
-    statut = models.BooleanField(default=True)
+    standard = models.BooleanField(default=True)
 
     def __str__(self):
         return self.sujet
