@@ -138,7 +138,7 @@
 								<img class="post-img img-fluid" src="{{ elt.image.url }}" alt="">
 							</figure>
 							<h3>
-								<a href="blog-details.html">{{ elt.titre }}</a>
+								<a href="{% url 'single' elt.pk %}">{{ elt.titre }}</a>
 							</h3>
 							<p>{{ elt.description }}</p>
 							<a href="blog-details.html" class="primary-btn text-uppercase mt-15">continue Reading</a>

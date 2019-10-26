@@ -22,7 +22,7 @@ urlpatterns = [
     path('category', views.category, name="category"),
     path('element', views.element, name="element"),
     path('archive', views.archive, name="archive"),
-    path('single', views.single, name="single"),
+    path('<int:pk>/single/', views.single, name="single"),
     path('inscription',views.register,name='inscription'),
     path('login',views.connect, name="connect"),
 ]

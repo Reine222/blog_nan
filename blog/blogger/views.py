@@ -59,8 +59,15 @@ def element(request):
 def archive(request):
     return render(request, 'pages/archive.html')
 
-def single(request):
-    return render(request, 'pages/single.html')
+def single(request, pk):
+    arts = Article.objects.get(pk=pk)
+
+
+    data ={
+        'act': arts,
+    }
+
+    return render(request, 'pages/single.html', data)
 
 def register(request):
     if request.method == "POST":
