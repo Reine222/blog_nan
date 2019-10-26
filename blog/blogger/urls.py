@@ -18,6 +18,7 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.home, name="home"),
+    path('<int:id>/categorie/', views.selectCat, name="selectedcat"),
     path('category', views.category, name="category"),
     path('element', views.element, name="element"),
     path('archive', views.archive, name="archive"),

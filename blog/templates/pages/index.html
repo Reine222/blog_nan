@@ -130,9 +130,9 @@
 				<div class="col-lg-8 post-list">
 					<!-- Start Post Area -->
 					<section class="post-area">
-						{% for item in categories %}
-						{% if forloop.first %}
-						{% for elt in item.article_cat.all %}
+						
+						
+						{% for elt in act_articles %}
 						<div class="single-post-item">
 							<figure>
 								<img class="post-img img-fluid" src="{{ elt.image.url }}" alt="">
@@ -186,11 +186,11 @@
 							</div>
 						</div>
 						{% endfor %}
-						{% endif %}
-						{% endfor %}
+						
+						
 						
 						<nav class="blog-pagination justify-content-center d-flex">
-							<ul class="pagination">
+							<!-- <ul class="pagination">
 								<li class="page-item">
 									<a href="#" class="page-link" aria-label="Previous">
 										<span aria-hidden="true">
@@ -198,10 +198,10 @@
 										</span>
 									</a>
 								</li>
-								<li class="page-item"><a href="#" class="page-link">01</a></li>
-								<li class="page-item active"><a href="#" class="page-link">02</a></li>
-								<li class="page-item"><a href="#" class="page-link">03</a></li>
-								<li class="page-item"><a href="#" class="page-link">04</a></li>
+								
+								
+
+				
 								<li class="page-item"><a href="#" class="page-link">09</a></li>
 								<li class="page-item">
 									<a href="#" class="page-link" aria-label="Next">
@@ -210,7 +210,7 @@
 										</span>
 									</a>
 								</li>
-							</ul>
+							</ul> -->
 						</nav>
 					</section>
 					<!-- Start Post Area -->
@@ -218,7 +218,7 @@
 
 				<div class="col-lg-4 sidebar">
 					<div class="single-widget search-widget">
-						<form class="example" action="#" style="margin:auto;max-width:300px">
+						<form class="example" method="GET" action="" style="margin:auto;max-width:300px">
 							<input type="text" placeholder="Search Posts" name="search2">
 							<button type="submit"><i class="fa fa-search"></i></button>
 						</form>
@@ -267,7 +267,7 @@
 						<h4 class="title">Post Categories</h4>
 						<ul>
 							{% for item in  categories %}
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
+							<li><a href="{% url 'selectedcat' item.id %}" class="justify-content-between align-items-center d-flex">
 									<p>{{ item.nom }}</p> <span>{{ item.article_cat.count }}</span>
 								</a></li>
 							{% endfor %}

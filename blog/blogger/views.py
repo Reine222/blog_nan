@@ -7,20 +7,48 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 # Create your views here.
 def home(request):
-    categories = Category.objects.filter(statut=True)
+    
     pop_articles = Article.objects.filter(statut=True)[:4]
-    #firstcat = Category.objects.filter(statut=True)[:1]
-    #articles = Article.objects.filter(statut=True)
+    categories = Category.objects.filter(statut=True)
+    firstcat = Category.objects.filter(statut=True)[:1]
 
-    #articles = firstcat.article_cat.all() 
-    #print(firstcat)
+    for item in firstcat:
+        first= item
+    act_articles = first.article_cat.all
+
+    
+    # try:
+    #     paginator = Paginator(act_articles, 1)
+    #     page = request.GET.get('page', 1)
+    #     cat_articles = paginator.get_page(page)
+    # except EmptyPage:
+    #     cat_articles = paginator(1)
+    # except PageNotAnInteger:
+    #     cat_articles = paginator(paginator.num_pages)
+    
+    
+
 
     data ={
         'categories': categories,
         'articles': pop_articles,
+        'act_articles': act_articles,
     }
 
     return render(request, 'pages/index.html', data)
+
+def selectCat(request, id):
+    pop_articles = Article.objects.filter(statut=True)[:4]
+    categories = Category.objects.filter(statut=True)
+    selectcat_arts = Article.objects.filter(categorie__pk = id )
+
+    data ={
+        'categories': categories,
+        'articles': pop_articles,
+        'act_articles': selectcat_arts,
+    }
+    return render(request, 'pages/index.html', data )
+
 
 def category(request):
     return render(request, 'pages/category.html')
