@@ -19,10 +19,10 @@ class Category(models.Model):
 class Article(models.Model):
     titre = models.CharField( max_length=200)
     user_id = models.ForeignKey(User, on_delete= models.CASCADE) 
-    categorie = models.ForeignKey(Category, on_delete= models.CASCADE, related_name='article_cat')
+    categorie = models.ForeignKey(Category, on_delete= models.CASCADE,related_name='article_cat')
     image = models.ImageField(upload_to='images')
     description = models.CharField(max_length=200)
-    contenu = models.TextField()
+    content = models.TextField()
     date_add = models.DateTimeField(auto_now_add=True)
     date_up = models.DateTimeField(auto_now=True)
     statut = models.BooleanField(default=True)
