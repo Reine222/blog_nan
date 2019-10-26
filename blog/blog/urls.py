@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from filebrowser.sites import site
 
 
 urlpatterns = [
@@ -25,6 +26,8 @@ urlpatterns = [
     path('contact', include('contact.urls')),
     #path('configuration', include('configuration.urls')),
     #path('api', include('api.urls')),
+    path('tinymce/', include('tinymce.urls')),
+    path('admin/filebrowser/', site.urls),
 ]
 
 
