@@ -61,10 +61,16 @@ def category(request):
     
     catego = Category.objects.filter(statut=True)
     articles = Article.objects.filter(statut=True)
+    pop_articles = Article.objects.filter(statut=True)[:4]
+    categories = Category.objects.filter(statut=True)
+    article= Article.objects.filter(statut=True)
     
     data= {
         'catego': catego,
         'articles': articles,
+        'articles': pop_articles,
+        'categories': categories,
+        'article': article,
     }
     return render(request, 'pages/category.html', data )
 
