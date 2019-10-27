@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blogger.apps.BloggerConfig',
     'contact.apps.ContactConfig',
     # 'api.apps.ApiConfig',
+    'configuration.apps.ConfigurationConfig',
     'tinymce',
     'filebrowser',
     'django_admin_generator',
