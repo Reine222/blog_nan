@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'configuration.apps.ConfigurationConfig',
     # 'api.apps.ApiConfig',
-    'configuration.apps.ConfigurationConfig',
     'tinymce',
     'filebrowser',
     'django_admin_generator',
