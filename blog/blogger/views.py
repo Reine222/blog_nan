@@ -10,11 +10,11 @@ def home(request):
     
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
-    firstcat = Category.objects.filter(statut=True)[:1]
+    act_articles = Article.objects.filter(statut=True)[:5]
 
-    for item in firstcat:
-        first= item
-    act_articles = first.article_cat.all
+    # for item in firstcat:
+    #     first= item
+    # act_articles = first.article_cat.all
 
     
     # try:
@@ -41,6 +41,7 @@ def selectCat(request, id):
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
     selectcat_arts = Article.objects.filter(categorie__pk = id )
+    print('selectcat_arts=', selectcat_arts)
 
     data ={
         'categories': categories,
