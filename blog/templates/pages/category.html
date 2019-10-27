@@ -23,23 +23,39 @@
 	<!-- Start main body Area -->
 	<div class="main-body section-gap">
 		<div class="container box_1170">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+				{% for cart in catego %}
+				<li class="nav-item">
+                	<a class="nav-link" id="tab{{forloop.counter|add:'1'}}" data-toggle="tab" href="#world-tab{{forloop.counter|add:'1'}}" role="tab" aria-controls="world-tab-2" aria-selected="false">{{ cart.nom }}</a>
+                </li>
+                                
+                {% endfor %}
+				</ul>
+			</div>
+		</nav>
+		<hr>
+		<br>
 			<div class="row">
 				<div class="col-lg-8 post-list">
 					<!-- Start Post Area -->
 					<section class="post-area">
 						<div class="row">
-							<div class="col-lg-6 col-md-6">
+						{% for art in articles %}
+							<div class="col-lg-6 col-md-6"  id="world-tab{{forloop.counter|add:'1'}}" role="tabpanel" aria-labelledby="tab{{forloop.counter|add:'1'}}">
 								<div class="single-post-item short">
 									<figure>
-										<img class="post-img img-fluid" src="/static/img/category/c1.jpg" alt="">
+										<img class="post-img img-fluid" src="{{art.image.url}}" alt="">
 									</figure>
 									<h3>
-										<a href="blog-details.html">It’s hurricane season but we are
-											visiting hilton head island</a>
+										<a href="blog-details.html">{{art.titre}}</a>
 									</h3>
-									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-										dolore magna aliqua.</p>
-									<a href="blog-details.html" class="primary-btn text-uppercase mt-15">continue Reading</a>
+									<p>{{art.description}}</p>
+									<a href="{% url 'single' art.pk %}" class="primary-btn text-uppercase mt-15">continue Reading</a>
 									<div class="post-box">
 										<div class="d-flex">
 											<div>
@@ -56,13 +72,13 @@
 														<li>
 															<a href="#">
 																<span class="lnr lnr-calendar-full"></span>
-																13th Oct, 2018
+																{{art.date_add}}
 															</a>
 														</li>
 														<li>
 															<a href="#">
 																<span class="lnr lnr-bubble"></span>
-																03
+																0{{ art.ArticleCommentaire.count }} Comments
 															</a>
 														</li>
 													</ul>
@@ -72,8 +88,10 @@
 									</div>
 								</div>
 							</div>
-
-							<div class="col-lg-6 col-md-6">
+						{% endfor %}
+							
+				
+							{% comment %} <div class="col-lg-6 col-md-6">
 								<div class="single-post-item short">
 									<figure>
 										<img class="post-img img-fluid" src="/static/img/category/c2.jpg" alt="">
@@ -386,7 +404,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> {% endcomment %}
 
 							<div class="col-lg-12">
 								<nav class="blog-pagination justify-content-center d-flex">
@@ -450,77 +468,34 @@
 					<div class="single-widget popular-posts-widget">
 						<h4 class="title">Popular Posts</h4>
 						<div class="blog-list ">
-							<div class="single-popular-post d-flex flex-row">
-								<div class="popular-thumb">
-									<img class="img-fluid" src="/static/img/blog/r1.jpg" alt="">
-								</div>
-								<div class="popular-details">
-									<a href="blog-details.html">
-										<h4>Space Final Frontier</h4>
-									</a>
-									<p class="text-uppercase">02 hours ago</p>
-								</div>
-							</div>
-							<div class="single-popular-post d-flex flex-row">
-								<div class="popular-thumb">
-									<img class="img-fluid" src="/static/img/blog/r2.jpg" alt="">
-								</div>
-								<div class="popular-details">
-									<a href="blog-details.html">
-										<h4>The Amazing Hubble</h4>
-									</a>
-									<p class="text-uppercase">02 hours ago</p>
-								</div>
-							</div>
-							<div class="single-popular-post d-flex flex-row">
-								<div class="popular-thumb">
-									<img class="img-fluid" src="/static/img/blog/r3.jpg" alt="">
-								</div>
-								<div class="popular-details">
-									<a href="blog-details.html">
-										<h4>Astronomy Astrology</h4>
-									</a>
-									<p class="text-uppercase">02 hours ago</p>
-								</div>
-							</div>
-							<div class="single-popular-post d-flex flex-row">
-								<div class="popular-thumb">
-									<img class="img-fluid" src="/static/img/blog/r4.jpg" alt="">
-								</div>
-								<div class="popular-details">
-									<a href="blog-details.html">
-										<h4>Asteroids telescope</h4>
-									</a>
-									<p class="text-uppercase">02 hours ago</p>
-								</div>
-							</div>
+						{% for arti in article %}
+                        {% if forloop.counter <= 4 %}
+                            <div class="single-popular-post d-flex flex-row">
+                                <div class="popular-thumb">
+                                    <img class="img-fluid" src="{{ arti.image.url }}" alt="">
+                                </div>
+                                <div class="popular-details">
+                                    <a href="{% url 'single' arti.pk %}">
+                                        <h4>{{ arti.titre }}</h4>
+                                    </a>
+                                    <p class="text-uppercase">02 hours ago</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% endfor %}
 						</div>
 					</div>
 
 					<div class="single-widget category-widget">
 						<h4 class="title">Post Categories</h4>
 						<ul>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Techlology</p> <span>37</span>
-								</a></li>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Lifestyle</p> <span>24</span>
-								</a></li>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Fashion</p> <span>59</span>
-								</a></li>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Art</p> <span>29</span>
-								</a></li>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Food</p> <span>15</span>
-								</a></li>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Architecture</p> <span>09</span>
-								</a></li>
-							<li><a href="#" class="justify-content-between align-items-center d-flex">
-									<p>Adventure</p> <span>44</span>
-								</a></li>
+							{% for item in  categories %}
+							<li>
+                                <a href="{% url 'selectedcat' item.id %}" class="justify-content-between align-items-center d-flex">
+									<p>{{ item.nom }}</p> <span>{{ item.article_cat.count }}</span>
+								</a>
+                            </li>
+						{% endfor %}
 						</ul>
 					</div>
 

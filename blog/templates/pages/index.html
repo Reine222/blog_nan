@@ -24,6 +24,8 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-10">
 					<div class="owl-carousel active-post-carusel">
+					{% for art in articlee %}
+					{% if forloop.counter <= 5 %}
 						<div class="post-box mb-30">
 							<div class="d-flex">
 								<div>
@@ -38,13 +40,13 @@
 									<div class="meta-details">
 										<ul>
 											<li>
-												<a href="#">
+												<a href="{% url 'single' art.pk %}">
 													<span class="lnr lnr-calendar-full"></span>
-													13th Oct, 2018
+													{{ art.date_add}}
 												</a>
 											</li>
 											<li>
-												<a href="#">
+												<a href="{% url 'single' art.pk %}">
 													<span class="lnr lnr-picture"></span>
 													Image Post
 												</a>
@@ -52,73 +54,29 @@
 											<li>
 												<a href="#">
 													<span class="lnr lnr-coffee-cup"></span>
-													Food & Travel
+													{{ art.categorie.nom}}
 												</a>
 											</li>
 											<li>
-												<a href="#">
+												<a href="{% url 'single' art.pk %}">
 													<span class="lnr lnr-bubble"></span>
-													03 Comments
+													0{{ art.ArticleCommentaire.count }} Comments
 												</a>
 											</li>
 										</ul>
 									</div>
 								</div>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-								dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+							<p>{{ art.description}}</p>
 							<div class="post-btn">
-								<a href="#" class="primary-btn text-uppercase">Read More</a>
+								<a href="{% url 'single' art.pk %}" class="primary-btn text-uppercase">Read More</a>
 							</div>
 						</div>
+					{% endif %}
+					{% endfor %}
+						
 
-						<div class="post-box mb-30">
-							<div class="d-flex">
-								<div>
-									<a href="#">
-										<img src="/static/img/author/a1.png" alt="">
-									</a>
-								</div>
-								<div class="post-meta">
-									<div class="meta-head">
-										<a href="#">Marvel Maison</a>
-									</div>
-									<div class="meta-details">
-										<ul>
-											<li>
-												<a href="#">
-													<span class="lnr lnr-calendar-full"></span>
-													13th Oct, 2018
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<span class="lnr lnr-picture"></span>
-													Image Post
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<span class="lnr lnr-coffee-cup"></span>
-													Food & Travel
-												</a>
-											</li>
-											<li>
-												<a href="#">
-													<span class="lnr lnr-bubble"></span>
-													03 Comments
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-								dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-							<div class="post-btn">
-								<a href="#" class="primary-btn text-uppercase">Read More</a>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -135,8 +93,9 @@
 					<section class="post-area">
 						
 						
-						{% for elt in act_articles %}
-						<div class="single-post-item">
+						{% for elt in article %}
+						{% comment %} {% if forloop.counter <= 5 %} {% endcomment %}
+							<div class="single-post-item">
 							<figure>
 								<img class="post-img img-fluid" src="{{ elt.image.url }}" alt="">
 							</figure>
@@ -144,7 +103,7 @@
 								<a href="{% url 'single' elt.pk %}">{{ elt.titre }}</a>
 							</h3>
 							<p>{{ elt.description }}</p>
-							<a href="blog-details.html" class="primary-btn text-uppercase mt-15">continue Reading</a>
+							<a href="{% url 'single' elt.pk %}" class="primary-btn text-uppercase mt-15">continue Reading</a>
 							<div class="post-box">
 								<div class="d-flex">
 									<div>
@@ -161,7 +120,7 @@
 												<li>
 													<a href="#">
 														<span class="lnr lnr-calendar-full"></span>
-														13th Oct, 2018
+														{{ elt.date_add}}
 													</a>
 												</li>
 												<li>
@@ -173,13 +132,13 @@
 												<li>
 													<a href="#">
 														<span class="lnr lnr-coffee-cup"></span>
-														Food & Travel
+														{{ elt.categorie.nom }}
 													</a>
 												</li>
 												<li>
 													<a href="#">
 														<span class="lnr lnr-bubble"></span>
-														03 Comments
+														0{{ elt.ArticleCommentaire.count }} Comments
 													</a>
 												</li>
 											</ul>
@@ -188,6 +147,8 @@
 								</div>
 							</div>
 						</div>
+						{% comment %} {% endif %} {% endcomment %}
+						
 						{% endfor %}
 						
 						
