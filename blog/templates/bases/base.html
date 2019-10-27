@@ -36,6 +36,7 @@
 	<header id="header">
 		<div class="container box_1170 main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
+			
 				<div id="logo">
 					{% for item in header %}
 					{% if forloop.first %}
@@ -43,6 +44,8 @@
 					{% endif %}
 					{% endfor %}
 				</div>
+			
+				
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li class="menu-active"><a href="{% url 'home' %}">Home</a></li>

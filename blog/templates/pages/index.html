@@ -5,13 +5,11 @@
 		<div class="container box_1170">
 			<div class="row fullscreen d-flex align-items-center justify-content-center">
 				<div class="banner-content text-center col-lg-8">
-					{% for item in header %}
-					{% if forloop.first %}
+				{% for log in header %}
 					<h1>
-						{{ item.titre }}
+						{{log.titre}}
 					</h1>
-					{% endif %}
-					{% endfor %}
+				{% endfor %}
 				</div>
 			</div>
 		</div>
