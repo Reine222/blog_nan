@@ -47,6 +47,7 @@ def selectCat(request, id):
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
     selectcat_arts = Article.objects.filter(categorie__pk = id )
+    print('selectcat_arts=', selectcat_arts)
 
     data ={
         'categories': categories,
