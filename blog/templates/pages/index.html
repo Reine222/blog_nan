@@ -5,10 +5,11 @@
 		<div class="container box_1170">
 			<div class="row fullscreen d-flex align-items-center justify-content-center">
 				<div class="banner-content text-center col-lg-8">
+				{% for log in header %}
 					<h1>
-						Charter Yacht <br>
-						The Luxury Of Traveling
+						{{log.titre}}
 					</h1>
+				{% endfor %}
 				</div>
 			</div>
 		</div>

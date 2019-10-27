@@ -6,9 +6,11 @@
 		<div class="container box_1170">
 			<div class="row d-flex align-items-center justify-content-center">
 				<div class="about-content col-lg-12">
+				{% for log in header1 %}
 					<h1 class="text-white">
-						Archive Page
+						{{log.titre}}
 					</h1>
+				{% endfor %}
 					<p class="text-white link-nav"><a href="index.html">Home </a> <span class="lnr lnr-arrow-right"></span> <a href="archive.html">
 							Archive</a></p>
 				</div>

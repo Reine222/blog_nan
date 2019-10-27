@@ -36,9 +36,12 @@
 	<header id="header">
 		<div class="container box_1170 main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
+			{% for log in header %}
 				<div id="logo">
-					<a href="index.html"><img src="/static/img/logo.png" alt="" title="" /></a>
+					<a href="index.html"><img src="{{ log.logo.url }}" alt="" title="" /></a>
 				</div>
+			{% endfor %}
+				
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
 						<li class="menu-active"><a href="{% url 'home' %}">Home</a></li>
