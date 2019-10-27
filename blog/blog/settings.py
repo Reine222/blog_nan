@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogger.apps.BloggerConfig',
     'contact.apps.ContactConfig',
+    'configuration.apps.ConfigurationConfig',
     # 'api.apps.ApiConfig',
     'tinymce',
     'filebrowser',

@@ -37,7 +37,11 @@
 		<div class="container box_1170 main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
 				<div id="logo">
-					<a href="index.html"><img src="/static/img/logo.png" alt="" title="" /></a>
+					{% for item in header %}
+					{% if forloop.first %}
+					<a href="{% url 'home' %}"><img src="{{item.logo.url }}" alt="" title="" /></a>
+					{% endif %}
+					{% endfor %}
 				</div>
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
@@ -96,7 +100,7 @@
 				</div>
 				<div class="col-lg-4 col-md-6 col-sm-6">
 					<div class="single-footer-widget instafeed">
-						{% item in footer_two %}
+						{% for item in footer_two %}
 						<h6 class="footer_title">{{ item.titre }}</h6>
 						<ul class="list instafeed d-flex flex-wrap">
 							<li><img src="{{ item.image_1.url }}" alt=""></li>

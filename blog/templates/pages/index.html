@@ -5,10 +5,13 @@
 		<div class="container box_1170">
 			<div class="row fullscreen d-flex align-items-center justify-content-center">
 				<div class="banner-content text-center col-lg-8">
+					{% for item in header %}
+					{% if forloop.first %}
 					<h1>
-						Charter Yacht <br>
-						The Luxury Of Traveling
+						{{ item.titre }}
 					</h1>
+					{% endif %}
+					{% endfor %}
 				</div>
 			</div>
 		</div>
