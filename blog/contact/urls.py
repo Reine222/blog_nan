@@ -18,4 +18,6 @@ from django.urls import path
 
 urlpatterns = [
     path('', views.contact, name="contact"),
+    path('send_message/', views.senddata),
+    path('newsletter/', views.letter),
 ]

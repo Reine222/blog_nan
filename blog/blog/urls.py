@@ -23,7 +23,7 @@ from filebrowser.sites import site
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blogger.urls')),
-    path('contact', include('contact.urls')),
+    path('contact/', include('contact.urls')),
     #path('configuration', include('configuration.urls')),
     #path('api', include('api.urls')),
     path('tinymce/', include('tinymce.urls')),
