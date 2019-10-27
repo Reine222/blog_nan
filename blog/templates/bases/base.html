@@ -36,11 +36,15 @@
 	<header id="header">
 		<div class="container box_1170 main-menu">
 			<div class="row align-items-center justify-content-between d-flex">
-			{% for log in header %}
+			
 				<div id="logo">
-					<a href="index.html"><img src="{{ log.logo.url }}" alt="" title="" /></a>
+					{% for item in header %}
+					{% if forloop.first %}
+					<a href="{% url 'home' %}"><img src="{{item.logo.url }}" alt="" title="" /></a>
+					{% endif %}
+					{% endfor %}
 				</div>
-			{% endfor %}
+			
 				
 				<nav id="nav-menu-container">
 					<ul class="nav-menu">
