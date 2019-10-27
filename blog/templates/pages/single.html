@@ -24,12 +24,11 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="main_blog_details">
-                        <img class="img-fluid" src="{{ act.image.url }}" alt="">
-                        <h4>{{ act.categorie }} <br />{{ act.titre }}</h4>
+                        <img class="img-fluid" src="{{ arts.image.url }}" alt="">
+                        <h4>{{ arts.titre }}</h4>
                         <div class="user_details">
                             <div class="float-left">
-                                <a href="#">Lifestyle</a>
-                                <a href="#">Gadget</a>
+                                <a href="#">{{ arts.categorie}}</a>
                             </div>
                             <div class="float-right">
                                 <div class="media">
@@ -43,33 +42,8 @@
                                 </div>
                             </div>
                         </div>
-                        <p>{{ act.content|safe }}</p>
-                        <p>MCSE boot camps have its supporters and its detractors. Some people do not understand why
-                            you
-                            should have to spend money on boot camp when you can get the MCSE study materials yourself
-                            at
-                            a fraction of the camp price. However, who has the willpower to actually sit through a
-                            self-imposed
-                            MCSE training. who has the willpower to actually sit through a self-imposed MCSE training.</p>
-                        <blockquote class="blockquote">
-                            <p class="mb-0">MCSE boot camps have its supporters and its detractors. Some people do not
-                                understand
-                                why you should have to spend money on boot camp when you can get the MCSE study
-                                materials
-                                yourself at a fraction of the camp price. However, who has the willpower to actually
-                                sit
-                                through a self-imposed MCSE training.</p>
-                        </blockquote>
-                        <p>MCSE boot camps have its supporters and its detractors. Some people do not understand why
-                            you
-                            should have to spend money on boot camp when you can get the MCSE study materials yourself
-                            at
-                            a fraction of the camp price. However, who has the willpower</p>
-                        <p>MCSE boot camps have its supporters and its detractors. Some people do not understand why
-                            you
-                            should have to spend money on boot camp when you can get the MCSE study materials yourself
-                            at
-                            a fraction of the camp price. However, who has the willpower</p>
+                        <p>{{ arts.content|safe }}</p>
+                        
                         <div class="news_d_footer">
                             <a href="#"><i class="lnr lnr lnr-heart"></i>Lily and 4 people like this</a>
                             <a class="justify-content-center ml-auto" href="#"><i class="lnr lnr lnr-bubble"></i>06
@@ -270,18 +244,23 @@
                     <div class="single-widget popular-posts-widget">
                         <h4 class="title">Popular Posts</h4>
                         <div class="blog-list ">
+                        {% for arti in article %}
+                        {% if forloop.counter <= 4 %}
                             <div class="single-popular-post d-flex flex-row">
                                 <div class="popular-thumb">
-                                    <img class="img-fluid" src="/static/img/blog/r1.jpg" alt="">
+                                    <img class="img-fluid" src="{{ arti.image.url }}" alt="">
                                 </div>
                                 <div class="popular-details">
-                                    <a href="blog-details.html">
-                                        <h4>Space Final Frontier</h4>
+                                    <a href="{% url 'single' arti.pk %}">
+                                        <h4>{{ arti.titre }}</h4>
                                     </a>
                                     <p class="text-uppercase">02 hours ago</p>
                                 </div>
                             </div>
-                            <div class="single-popular-post d-flex flex-row">
+                        {% endif %}
+                        {% endfor %}
+                            
+                            {% comment %} <div class="single-popular-post d-flex flex-row">
                                 <div class="popular-thumb">
                                     <img class="img-fluid" src="/static/img/blog/r2.jpg" alt="">
                                 </div>
@@ -313,34 +292,22 @@
                                     </a>
                                     <p class="text-uppercase">02 hours ago</p>
                                 </div>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                     </div>
 
                     <div class="single-widget category-widget">
                         <h4 class="title">Post Categories</h4>
                         <ul>
-                            <li><a href="#" class="justify-content-between align-items-center d-flex">
-                                    <p>Techlology</p> <span>37</span>
-                                </a></li>
-                            <li><a href="#" class="justify-content-between align-items-center d-flex">
-                                    <p>Lifestyle</p> <span>24</span>
-                                </a></li>
-                            <li><a href="#" class="justify-content-between align-items-center d-flex">
-                                    <p>Fashion</p> <span>59</span>
-                                </a></li>
-                            <li><a href="#" class="justify-content-between align-items-center d-flex">
-                                    <p>Art</p> <span>29</span>
-                                </a></li>
-                            <li><a href="#" class="justify-content-between align-items-center d-flex">
-                                    <p>Food</p> <span>15</span>
-                                </a></li>
-                            <li><a href="#" class="justify-content-between align-items-center d-flex">
-                                    <p>Architecture</p> <span>09</span>
-                                </a></li>
-                            <li><a href="#" class="justify-content-between align-items-center d-flex">
-                                    <p>Adventure</p> <span>44</span>
-                                </a></li>
+                        {% for item in  categories %}
+							<li>
+                                <a href="{% url 'selectedcat' item.id %}" class="justify-content-between align-items-center d-flex">
+									<p>{{ item.nom }}</p> <span>{{ item.article_cat.count }}</span>
+								</a>
+                            </li>
+						{% endfor %}
+                            
+                            
                         </ul>
                     </div>
 

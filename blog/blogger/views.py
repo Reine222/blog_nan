@@ -11,7 +11,10 @@ def home(request):
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
     firstcat = Category.objects.filter(statut=True)[:1]
-
+    article= Article.objects.filter(statut=True)
+    articlee= Article.objects.filter(statut=True)[1:]
+    
+    
     for item in firstcat:
         first= item
     act_articles = first.article_cat.all
@@ -33,6 +36,9 @@ def home(request):
         'categories': categories,
         'articles': pop_articles,
         'act_articles': act_articles,
+        'article': article,
+        'articlee': articlee,
+        
     }
 
     return render(request, 'pages/index.html', data)
@@ -51,7 +57,18 @@ def selectCat(request, id):
 
 
 def category(request):
-    return render(request, 'pages/category.html')
+    
+    catego = Category.objects.filter(statut=True)
+    articles = Article.objects.filter(statut=True)
+    
+    data= {
+        'catego': catego,
+        'articles': articles,
+    }
+    return render(request, 'pages/category.html', data )
+
+
+
 
 def element(request):
     return render(request, 'pages/element.html')
@@ -59,12 +76,23 @@ def element(request):
 def archive(request):
     return render(request, 'pages/archive.html')
 
+
+
+
 def single(request, pk):
     arts = Article.objects.get(pk=pk)
-
+    pop_articles = Article.objects.filter(statut=True)[:4]
+    categories = Category.objects.filter(statut=True)
+    article= Article.objects.filter(statut=True)
+    
+    
 
     data ={
-        'act': arts,
+        'arts': arts,
+        'articles': pop_articles,
+        'categories': categories,
+        'article': article,
+        
     }
 
     return render(request, 'pages/single.html', data)
