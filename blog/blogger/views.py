@@ -131,13 +131,14 @@ def register(request):
         tweet_lien=request.POST.get('tweet_lien')
         ball_lien=request.POST.get('ball_lien')
         Be_lien=request.POST.get('Be_lien')
+        contact=request.POST.get('contact')
         
         image=request.FILES.get('image')
         email=request.POST.get('email')
         username=request.POST.get('username')
         password=request.POST.get('pass')
         repeat_pass=request.POST.get('repeat-pass')
-        print('\r\n',nom,prenom,fonction,description,membre,image,email,username,fb_lien,tweet_lien,ball_lien,Be_lien,password,repeat_pass,'\r\n')
+        print('\r\n',nom,prenom,fonction,description,membre,image,email,username,fb_lien,tweet_lien,ball_lien,Be_lien,contact,password,repeat_pass,'\r\n')
         if password == repeat_pass:
             user = User(
                 username=username,

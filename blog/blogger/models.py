@@ -64,6 +64,7 @@ class Profile(models.Model):
     tweet_lien =models.URLField(max_length=200)
     ball_lien =models.URLField(max_length=200)
     Be_lien =models.URLField(max_length=200)
+    contact =models.CharField(max_length=50)
     Validé =models.BooleanField()
     
     # Initialisation a la creation
