@@ -38,7 +38,7 @@ def home(request):
     data ={
         'categories': categories,
         'articles': pop_articles,
-        # 'act_articles': act_articles,
+        'act_articles': act_articles,
         'article': article,
         'articlee': articlee,
         
@@ -55,7 +55,7 @@ def selectCat(request, id):
     data ={
         'categories': categories,
         'articles': pop_articles,
-        # 'act_articles': selectcat_arts,
+        'act_articles': selectcat_arts,
     }
     return render(request, 'pages/index.html', data )
 
@@ -132,13 +132,14 @@ def register(request):
         ball_lien=request.POST.get('ball_lien')
         Be_lien=request.POST.get('Be_lien')
         contact=request.POST.get('contact')
+        # valider=request.POST.get('valider')
         
         image=request.FILES.get('image')
         email=request.POST.get('email')
         username=request.POST.get('username')
         password=request.POST.get('pass')
         repeat_pass=request.POST.get('repeat-pass')
-        print('\r\n',nom,prenom,fonction,description,membre,image,email,username,fb_lien,tweet_lien,ball_lien,Be_lien,contact,password,repeat_pass,'\r\n')
+        print('\r\n',nom,prenom,fonction,description,membre,image,email,contact,username,fb_lien,tweet_lien,ball_lien,Be_lien,password,repeat_pass,'\r\n')
         if password == repeat_pass:
             user = User(
                 username=username,
@@ -157,6 +158,8 @@ def register(request):
                 user.password = password
                 user.set_password=user.password
                 user.save()
+                prof = Profile(nom=nom,prenom=prenom,description=description,membre=membre,image=image,email=email,contact=contact,username=username,fb_lien=fb_lien,tweet_lien=tweet_lien,ball_lien=ball_lien,Be_lien=Be_lien)
+                prof.save()
                 print('success')
                 genere()
                 return redirect('confirmer')

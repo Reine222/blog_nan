@@ -66,7 +66,7 @@ class Profile(models.Model):
     ball_lien =models.URLField(max_length=200)
     Be_lien =models.URLField(max_length=200)
     contact =models.CharField(max_length=50)
-    valider =models.BooleanField()
+    valider =models.CharField(max_length=50)
     
     # Initialisation a la creation
     

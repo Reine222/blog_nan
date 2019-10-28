@@ -111,7 +111,6 @@ class ProfileAdmin(admin.ModelAdmin):
     )
     list_filter = (
         'user',
-        'valider',
         'id',
         'user',
         'fonction',
