@@ -80,8 +80,6 @@ def category(request):
 
 
 
-def element(request):
-    return render(request, 'pages/element.html')
 
 def archive(request):
     return render(request, 'pages/archive.html')
