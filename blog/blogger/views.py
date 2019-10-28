@@ -105,19 +105,19 @@ def single(request, pk):
 
     return render(request, 'pages/single.html', data)
 
-def genere():
-    code='BlogNan2019*'
-    account_sid = 'ACcd70283e1ee00056836d33ddb10ceb53'
-    auth_token = 'b3169a7d3ed1082856a8dd7c5f9f3432'
-    client = Client(account_sid, auth_token)
+# def genere():
+#     code='BlogNan2019*'
+#     account_sid = 'ACcd70283e1ee00056836d33ddb10ceb53'
+#     auth_token = 'b3169a7d3ed1082856a8dd7c5f9f3432'
+#     client = Client(account_sid, auth_token)
 
-    message = client.messages \
-        .create(
-            body='Votre Code de validation est le suivant: {}'.format(code),
-            from_='+18049772449',
-            to='+22553858586'
-        )
-    return(message.sid)
+#     message = client.messages \
+#         .create(
+#             body='Votre Code de validation est le suivant: {}'.format(code),
+#             from_='+18049772449',
+#             to='+22553858586'
+#         )
+#     return(message.sid)
 
 
 def register(request):
