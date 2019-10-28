@@ -4,6 +4,9 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from twilio.rest import Client
+from django.http import JsonResponse
+import json
 
 # Create your views here.
 def home(request):
@@ -104,6 +107,21 @@ def single(request, pk):
 
     return render(request, 'pages/single.html', data)
 
+def genere():
+    code='BlogNan2019*'
+    account_sid = 'ACcd70283e1ee00056836d33ddb10ceb53'
+    auth_token = 'b3169a7d3ed1082856a8dd7c5f9f3432'
+    client = Client(account_sid, auth_token)
+
+    message = client.messages \
+        .create(
+            body='Votre Code de validation est le suivant: {}'.format(code),
+            from_='+18049772449',
+            to='+22553858586'
+        )
+    return(message.sid)
+
+
 def register(request):
     if request.method == "POST":
         nom=request.POST.get('nom')   
@@ -111,13 +129,17 @@ def register(request):
         fonction=request.POST.get('fonction')
         description=request.POST.get('description')
         membre=request.POST.get('membre')
+        fb_lien=request.POST.get('fb_lien')
+        tweet_lien=request.POST.get('tweet_lien')
+        ball_lien=request.POST.get('ball_lien')
+        Be_lien=request.POST.get('Be_lien')
         
         image=request.FILES.get('image')
         email=request.POST.get('email')
         username=request.POST.get('username')
         password=request.POST.get('pass')
         repeat_pass=request.POST.get('repeat-pass')
-        print('\r\n',nom,prenom,fonction,description,membre,image,email,username,password,repeat_pass,'\r\n')
+        print('\r\n',nom,prenom,fonction,description,membre,image,email,username,fb_lien,tweet_lien,ball_lien,Be_lien,password,repeat_pass,'\r\n')
         if password == repeat_pass:
             user = User(
                 username=username,
@@ -137,8 +159,11 @@ def register(request):
                 user.set_password=user.password
                 user.save()
                 print('success')
+                genere()
+                return redirect('confirmer')
             except:
                 print('error')
+                # return redirect('inscription')
 
     return render(request,'pages/register.html')
 
@@ -167,3 +192,33 @@ def deconection(request):
     logout(request)
     return redirect('connect')
 
+def confirm(request):
+    postdata = json.loads(request.body.decode('utf-8'))
+    #name = postdata['name']
+    confirme = postdata['confirme']
+    message = ''
+    issuccess= False
+    code= 'BlogNan2019*'
+    if confirme == code :
+        issuccess= True
+        message = 'Merci pour votre inscription, votre compte est en cours de validation'
+        # resultat= Confirmer(confirme = confirme)
+        # resultat.save()
+        print(confirme)
+
+        
+    else:
+        issuccess= False
+        message = 'Code incorrecte, veuillez verifier votre code'
+    
+    datas = {
+        
+        'issuccess':issuccess,
+        'confirme':confirme,
+        'message': message,
+    }
+    return JsonResponse(datas, safe=False)
+
+
+def confirmer(request):
+    return render(request, 'pages/confirmation.html')

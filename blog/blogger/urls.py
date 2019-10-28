@@ -25,4 +25,6 @@ urlpatterns = [
     path('<int:pk>/single/', views.single, name="single"),
     path('inscription',views.register,name='inscription'),
     path('login',views.connect, name="connect"),
+    path('confirmer/', views.confirmer, name= 'confirmer'),
+    path('confirmation/', views.confirm, name= 'confirmation'),
 ]

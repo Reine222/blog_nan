@@ -90,6 +90,10 @@ class ProfileAdmin(admin.ModelAdmin):
         'image',
         'description',
         'statut',
+        'fb_lien',
+        'tweet_lien',
+        'ball_lien',
+        'Be_lien',
     )
     list_filter = (
         'user',
@@ -99,6 +103,10 @@ class ProfileAdmin(admin.ModelAdmin):
         'image',
         'description',
         'statut',
+        'fb_lien',
+        'tweet_lien',
+        'ball_lien',
+        'Be_lien',
     )
 
 

@@ -57,6 +57,10 @@ class Profile(models.Model):
     image = models.ImageField(upload_to='profile/', default='useravatar.png')
     description = models.TextField()
     statut = models.CharField(max_length=50)
+    fb_lien =models.URLField(max_length=200)
+    tweet_lien =models.URLField(max_length=200)
+    ball_lien =models.URLField(max_length=200)
+    Be_lien =models.URLField(max_length=200)
     
     # Initialisation a la creation
     
@@ -69,6 +73,7 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, created, **kwargs):
         
         instance.profile.save()
+
 
 
 

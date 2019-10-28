@@ -25,7 +25,7 @@ urlpatterns = [
     path('', include('blogger.urls')),
     path('contact/', include('contact.urls')),
     #path('configuration', include('configuration.urls')),
-    #path('api', include('api.urls')),
+    path('api', include('api.urls')),
     path('tinymce/', include('tinymce.urls')),
     path('admin/filebrowser/', site.urls),
 ]
