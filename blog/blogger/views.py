@@ -20,7 +20,7 @@ def home(request):
     
     for item in firstcat:
         first= item
-    act_articles = first.article_cat.all
+        act_articles= first.article_cat.all()
 
     
     # try:
@@ -38,7 +38,7 @@ def home(request):
     data ={
         'categories': categories,
         'articles': pop_articles,
-        'act_articles': act_articles,
+        # 'act_articles': act_articles,
         'article': article,
         'articlee': articlee,
         
@@ -55,7 +55,7 @@ def selectCat(request, id):
     data ={
         'categories': categories,
         'articles': pop_articles,
-        'act_articles': selectcat_arts,
+        # 'act_articles': selectcat_arts,
     }
     return render(request, 'pages/index.html', data )
 

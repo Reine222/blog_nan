@@ -28,6 +28,7 @@ class Article(models.Model):
     date_add = models.DateTimeField(auto_now_add=True)
     date_up = models.DateTimeField(auto_now=True)
     statut = models.BooleanField(default=True)
+    valider =models.BooleanField()
 
     def __str__(self):
         return self.titre
@@ -65,7 +66,7 @@ class Profile(models.Model):
     ball_lien =models.URLField(max_length=200)
     Be_lien =models.URLField(max_length=200)
     contact =models.CharField(max_length=50)
-    Validé =models.BooleanField()
+    valider =models.BooleanField()
     
     # Initialisation a la creation
     
@@ -85,17 +86,7 @@ class Profile(models.Model):
 
     
     
-    # image = models.ImageField(upload_to='profile/', default='useravatar.png')
-    # fonction= models.CharField(max_length=50)
-    # description= models.TextField()
-    # fb_icon= models.URLField(max_length=200)
-    # tweet_icon= models.URLField(max_length=200)
-    # ball_icon= models.URLField(max_length=200)
-    # Be_icon= models.URLField(max_length=200)
-    # dat_add= models.DateTimeField(auto_now=False, auto_now_add=True)
-    # date_upd= models.DateTimeField(auto_now=True, auto_now_add=False)
-    # membre=models.BooleanField()
-    # visiteur=models.BooleanField()
+    
     
 def deconnexion(request):
     logout(request)
