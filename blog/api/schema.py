@@ -132,6 +132,12 @@ class Query(ObjectType):
 class ProfileInput(graphene.InputObjectType):
     id = graphene.ID()
     name = graphene.String()
+    name = graphene.String()
+    name = graphene.String()
+    name = graphene.String()
+    name = graphene.String()
+    name = graphene.String()
+    name = graphene.String()
 
 
 class CategorieInput(graphene.InputObjectType):
