@@ -24,6 +24,7 @@ class Article(models.Model):
     image = models.ImageField(upload_to='images')
     description = models.CharField(max_length=200)
     content = HTMLField('Content')
+    date= models.DateField(auto_now=False, auto_now_add=True)
     date_add = models.DateTimeField(auto_now_add=True)
     date_up = models.DateTimeField(auto_now=True)
     statut = models.BooleanField(default=True)
@@ -39,7 +40,9 @@ class Commentaire(models.Model):
     message = models.TextField()
     photo = models.ImageField(upload_to='images', default='images/user.jpg')
     article = models.ForeignKey(Article, on_delete= models.CASCADE, related_name="ArticleCommentaire")
-    standard = models.BooleanField(default=True)
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_up = models.DateTimeField(auto_now=True)
+    statut = models.BooleanField(default=True)
 
     def __str__(self):
         return self.sujet
@@ -61,6 +64,7 @@ class Profile(models.Model):
     tweet_lien =models.URLField(max_length=200)
     ball_lien =models.URLField(max_length=200)
     Be_lien =models.URLField(max_length=200)
+    Validé =models.BooleanField()
     
     # Initialisation a la creation
     
