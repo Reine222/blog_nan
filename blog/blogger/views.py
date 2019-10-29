@@ -115,7 +115,18 @@ def single(request, pk):
 
     return render(request, 'pages/single.html', data)
 
+########################## def twilio######################################
 
+
+
+
+
+
+
+
+
+
+########################## def twilio######################################
 
 def register(request):
     if request.method == "POST":
