@@ -131,7 +131,22 @@ class Query(ObjectType):
 
 class ProfileInput(graphene.InputObjectType):
     id = graphene.ID()
-    name = graphene.String()
+    fonction = graphene.String()
+    image = graphene.String()
+    description = graphene.String()
+    statut = graphene.String()
+    fb_lien = graphene.String()
+    tweet_lien = graphene.String()
+    ball_lien = graphene.String()
+    Be_lien = graphene.String()
+    nom = graphene.String()
+    prenom = graphene.String()
+    email = graphene.String()
+    username = graphene.String()
+    password = graphene.String()
+    repeat_pass = graphene.String()
+
+
 
 
 class CategorieInput(graphene.InputObjectType):
@@ -147,24 +162,36 @@ class ArticleInput(graphene.InputObjectType):
     titre = graphene.String()
     image= graphene.String()
     description= graphene.String()
-    titre = graphene.String()
-    titre = graphene.String()
+    content = graphene.String()
+    date_add = graphene.String()
+    date_up = graphene.String()
+    statut = graphene.String()
     categorie = graphene.List(ActorInput)
 
 class CommentaireInput(graphene.InputObjectType):
     id = graphene.ID()
-    title = graphene.String()
+    nom = graphene.String()
     actors = graphene.List(ActorInput)
-    year = graphene.Int()
+    email = graphene.String()
+    date = graphene.String()
+    sujet = graphene.String()
+    message = graphene.String()
+    photo = graphene.String()
+    date_add = graphene.String()
+    date_up = graphene.String()
+    statut = graphene.String()
+    
 
 class ContactInput(graphene.InputObjectType):
     id = graphene.ID()
-    title = graphene.String()
-    actors = graphene.List(ActorInput)
-    year = graphene.Int()
+    nom = graphene.String()
+    email = graphene.String()
+    sujet = graphene.String()
+    message = graphene.String()
+    date_add = graphene.String()
 
 class NewsletterInput(graphene.InputObjectType):
     id = graphene.ID()
-    title = graphene.String()
-    actors = graphene.List(ActorInput)
-    year = graphene.Int()
+    email = graphene.String()
+    date_add = graphene.String()
+    date_up = graphene.String()

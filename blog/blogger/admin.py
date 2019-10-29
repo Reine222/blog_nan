@@ -29,16 +29,20 @@ class ArticleAdmin(admin.ModelAdmin):
         'image',
         'description',
         'content',
+        'date',
         'date_add',
         'date_up',
         'statut',
+        'valider',
     )
     list_filter = (
         'user_id',
         'categorie',
+        'date',
         'date_add',
         'date_up',
         'statut',
+        'valider',
         'id',
         'titre',
         'user_id',
@@ -46,9 +50,11 @@ class ArticleAdmin(admin.ModelAdmin):
         'image',
         'description',
         'content',
+        'date',
         'date_add',
         'date_up',
         'statut',
+        'valider',
     )
 
 
@@ -63,12 +69,16 @@ class CommentaireAdmin(admin.ModelAdmin):
         'message',
         'photo',
         'article',
-        'standard',
+        'date_add',
+        'date_up',
+        'statut',
     )
     list_filter = (
         'date',
         'article',
-        'standard',
+        'date_add',
+        'date_up',
+        'statut',
         'id',
         'nom',
         'email',
@@ -77,7 +87,9 @@ class CommentaireAdmin(admin.ModelAdmin):
         'message',
         'photo',
         'article',
-        'standard',
+        'date_add',
+        'date_up',
+        'statut',
     )
 
 
@@ -94,6 +106,8 @@ class ProfileAdmin(admin.ModelAdmin):
         'tweet_lien',
         'ball_lien',
         'Be_lien',
+        'contact',
+        'valider',
     )
     list_filter = (
         'user',
@@ -107,6 +121,8 @@ class ProfileAdmin(admin.ModelAdmin):
         'tweet_lien',
         'ball_lien',
         'Be_lien',
+        'contact',
+        'valider',
     )
 
 

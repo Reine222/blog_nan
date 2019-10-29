@@ -24,9 +24,11 @@ class Article(models.Model):
     image = models.ImageField(upload_to='images')
     description = models.CharField(max_length=200)
     content = HTMLField('Content')
+    date= models.DateField(auto_now=False, auto_now_add=True)
     date_add = models.DateTimeField(auto_now_add=True)
     date_up = models.DateTimeField(auto_now=True)
     statut = models.BooleanField(default=True)
+    valider =models.BooleanField()
 
     def __str__(self):
         return self.titre
@@ -39,7 +41,9 @@ class Commentaire(models.Model):
     message = models.TextField()
     photo = models.ImageField(upload_to='images', default='images/user.jpg')
     article = models.ForeignKey(Article, on_delete= models.CASCADE, related_name="ArticleCommentaire")
-    standard = models.BooleanField(default=True, )
+    date_add = models.DateTimeField(auto_now_add=True)
+    date_up = models.DateTimeField(auto_now=True)
+    statut = models.BooleanField(default=True)
 
     def __str__(self):
         return self.sujet
@@ -61,6 +65,8 @@ class Profile(models.Model):
     tweet_lien =models.URLField(max_length=200)
     ball_lien =models.URLField(max_length=200)
     Be_lien =models.URLField(max_length=200)
+    contact =models.CharField(max_length=50)
+    valider =models.CharField(max_length=50)
     
     # Initialisation a la creation
     
@@ -78,17 +84,7 @@ class Profile(models.Model):
 
     
     
-    # image = models.ImageField(upload_to='profile/', default='useravatar.png')
-    # fonction= models.CharField(max_length=50)
-    # description= models.TextField()
-    # fb_icon= models.URLField(max_length=200)
-    # tweet_icon= models.URLField(max_length=200)
-    # ball_icon= models.URLField(max_length=200)
-    # Be_icon= models.URLField(max_length=200)
-    # dat_add= models.DateTimeField(auto_now=False, auto_now_add=True)
-    # date_upd= models.DateTimeField(auto_now=True, auto_now_add=False)
-    # membre=models.BooleanField()
-    # visiteur=models.BooleanField()
+    
     
 def deconnexion(request):
     logout(request)

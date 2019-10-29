@@ -20,7 +20,7 @@ def home(request):
     
     for item in firstcat:
         first= item
-    act_articles = first.article_cat.all
+        act_articles= first.article_cat.all()
 
     
     # try:
@@ -107,19 +107,19 @@ def single(request, pk):
 
     return render(request, 'pages/single.html', data)
 
-def genere():
-    code='BlogNan2019*'
-    account_sid = 'ACcd70283e1ee00056836d33ddb10ceb53'
-    auth_token = 'b3169a7d3ed1082856a8dd7c5f9f3432'
-    client = Client(account_sid, auth_token)
+# def genere():
+#     code='BlogNan2019*'
+#     account_sid = 'ACcd70283e1ee00056836d33ddb10ceb53'
+#     auth_token = 'b3169a7d3ed1082856a8dd7c5f9f3432'
+#     client = Client(account_sid, auth_token)
 
-    message = client.messages \
-        .create(
-            body='Votre Code de validation est le suivant: {}'.format(code),
-            from_='+18049772449',
-            to='+22553858586'
-        )
-    return(message.sid)
+#     message = client.messages \
+#         .create(
+#             body='Votre Code de validation est le suivant: {}'.format(code),
+#             from_='+18049772449',
+#             to='+22553858586'
+#         )
+#     return(message.sid)
 
 
 def register(request):
@@ -133,13 +133,15 @@ def register(request):
         tweet_lien=request.POST.get('tweet_lien')
         ball_lien=request.POST.get('ball_lien')
         Be_lien=request.POST.get('Be_lien')
+        contact=request.POST.get('contact')
+        # valider=request.POST.get('valider')
         
         image=request.FILES.get('image')
         email=request.POST.get('email')
         username=request.POST.get('username')
         password=request.POST.get('pass')
         repeat_pass=request.POST.get('repeat-pass')
-        print('\r\n',nom,prenom,fonction,description,membre,image,email,username,fb_lien,tweet_lien,ball_lien,Be_lien,password,repeat_pass,'\r\n')
+        print('\r\n',nom,prenom,fonction,description,membre,image,email,contact,username,fb_lien,tweet_lien,ball_lien,Be_lien,password,repeat_pass,'\r\n')
         if password == repeat_pass:
             user = User(
                 username=username,
@@ -158,6 +160,8 @@ def register(request):
                 user.password = password
                 user.set_password=user.password
                 user.save()
+                prof = Profile(nom=nom,prenom=prenom,description=description,membre=membre,image=image,email=email,contact=contact,username=username,fb_lien=fb_lien,tweet_lien=tweet_lien,ball_lien=ball_lien,Be_lien=Be_lien)
+                prof.save()
                 print('success')
                 genere()
                 return redirect('confirmer')
