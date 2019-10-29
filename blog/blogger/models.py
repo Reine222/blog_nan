@@ -39,7 +39,7 @@ class Commentaire(models.Model):
     message = models.TextField()
     photo = models.ImageField(upload_to='images', default='images/user.jpg')
     article = models.ForeignKey(Article, on_delete= models.CASCADE, related_name="ArticleCommentaire")
-    standard = models.BooleanField(default=True)
+    standard = models.BooleanField(default=True, )
 
     def __str__(self):
         return self.sujet
@@ -73,8 +73,6 @@ class Profile(models.Model):
     def save_user_profile(sender, instance, created, **kwargs):
         
         instance.profile.save()
-
-
 
 
 

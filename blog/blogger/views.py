@@ -92,14 +92,16 @@ def single(request, pk):
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
-    
-    
+    commentaires = Commentaire.objects.filter(article__pk = pk )
+    aricle_id = pk
 
     data ={
         'arts': arts,
         'articles': pop_articles,
         'categories': categories,
         'article': article,
+        'commentaires': commentaires,
+        'aricle_id':aricle_id,
         
     }
 
@@ -220,3 +222,32 @@ def confirm(request):
 
 def confirmer(request):
     return render(request, 'pages/confirmation.html')
+
+def comment(request):
+    postdata = json.loads(request.body.decode('utf-8'))
+    name = postdata['name']
+    email = postdata['email']
+    subject = postdata['suject']
+    message = postdata['message']
+    succes = False
+    try:
+        commentaire = Commentaire()
+        commentaire.nom = name
+        commentaire.email = email
+        commentaire.sujet = subject
+        commentaire.message = message
+        commentaire.save()
+        succes = True
+        reponse = 'Votre message a bien été envoyé, nous vous remercions de nous avoir contacté !'
+    except:
+        succes = False
+        reponse = "Un probleme survennu lors de l'enregistrement"
+
+    datas = {
+        'succes':succes,
+        'reponse':reponse,
+    }
+    
+    return JsonResponse(datas, safe=False)
+
+
