@@ -151,11 +151,6 @@
                                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
                             </div>
 
-                            <div class="form-group">
-                                    <p>${ article_id }</p>
-                                <input v-model='article_id' value='{{ article_id }}' class="form-control mb-10" rows="5" name="id" >
-                            </div>
-
                             <button v-on:click="sendregister" class="primary-btn submit_btn text-uppercase">Send Message</button>
                         </div>
                 </div>
@@ -267,7 +262,7 @@
             data: {
                 login: false,
                 register: true,
-                article_id : '',
+                article_id : '{{ article_id }}',
                 name: '',
                 email: '',
                 suject: '',
@@ -304,7 +299,7 @@
                         email:  this.email,
                         suject:this.suject,
                         message:this.message,
-                        article_id: 6,
+                        article_id: this.article_id,
                             }).then(response => {
                                 console.log(response)
                                 this.codesend = true
