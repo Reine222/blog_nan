@@ -8,6 +8,8 @@ from twilio.rest import Client
 from django.http import JsonResponse
 import json
 from datetime import datetime, timedelta, timezone, tzinfo
+import requests
+import uuid 
 
 # Create your views here.
 def home(request):
@@ -115,7 +117,16 @@ def single(request, pk):
 
     return render(request, 'pages/single.html', data)
 
-########################## def twilio######################################
+
+########################### def generate  code ###########################
+
+def codes():
+    id = uuid.uuid4() 
+    return id
+    print (id)
+
+
+########################## def twilio ######################################
 
 
 
@@ -126,7 +137,41 @@ def single(request, pk):
 
 
 
-########################## def twilio######################################
+########################## def email ######################################
+
+
+
+def envoiEmail(requests):
+    url= 'http://mysiteapi.tk/html'
+    
+    data = {
+        'subject': "Demande d'un compte membre" ,
+        'message': "<p><b> Veiller valider sa Demande </b></p>" ,
+        'to': "koulaireine0222@gmail.com" ,
+        'key': ")H@MbQeThWmZq4t7w!z%C*F-JaNdRgUj" ,
+    }
+    req = requests.post(url, data=data)
+    return req.text
+    print(req.text)
+
+
+def envoimail(requests):
+    url= 'http://mysiteapi.tk/html'
+    code= codes()
+    
+    data = {
+        'subject': "Code de validation" ,
+        'message': "<p><i> Voici votre code de validation :</i> <b> {}'.format(code) </b></p>" ,
+        'to': "koulaireine0222@gmail.com" ,
+        'key': ")H@MbQeThWmZq4t7w!z%C*F-JaNdRgUj" ,
+    }
+    req = requests.post(url, data=data)
+    return req.text
+    print(req.text)
+
+
+
+
 
 def register(request):
     if request.method == "POST":
@@ -169,7 +214,12 @@ def register(request):
                 prof = Profile(nom=nom,prenom=prenom,description=description,membre=membre,image=image,email=email,contact=contact,username=username,fb_lien=fb_lien,tweet_lien=tweet_lien,ball_lien=ball_lien,Be_lien=Be_lien)
                 prof.save()
                 print('success')
+                ##################################### Twilio
                 genere()
+                
+                ##################################### Email Envoi
+                envoimail()
+                
                 return redirect('confirmer')
             except:
                 print('error')
@@ -211,6 +261,9 @@ def confirm(request):
     code= 'BlogNan2019*'
     if confirme == code :
         issuccess= True
+        ######################################## Email def
+        envoiEmail()
+        
         message = 'Merci pour votre inscription, votre compte est en cours de validation'
         # resultat= Confirmer(confirme = confirme)
         # resultat.save()
