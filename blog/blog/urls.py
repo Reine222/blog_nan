@@ -19,13 +19,22 @@ from django.conf import settings
 from django.conf.urls.static import static
 from filebrowser.sites import site
 
+from graphene_django.views import GraphQLView
+
+from api import schema
+
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
     path('', include('blogger.urls')),
     path('contact/', include('contact.urls')),
     #path('configuration', include('configuration.urls')),
     path('api', include('api.urls')),
+    
+    path('graphql/', GraphQLView.as_view(graphiql=True)),
     path('tinymce/', include('tinymce.urls')),
     path('admin/filebrowser/', site.urls),
 ]
