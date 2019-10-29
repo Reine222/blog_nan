@@ -49,3 +49,12 @@ class Copy(models.Model):
     date_add= models.DateTimeField(auto_now=False, auto_now_add=True)
     date_upd= models.DateTimeField(auto_now=True, auto_now_add=False)
     statut= models.BooleanField()
+    
+
+
+# class Element(models.Model):
+#     titre= models.CharField(max_length=250)
+#     icon = models.CharField(max_length=50)
+#     description= models.TextField()
+#     date_add= models.DateTimeField(auto_now=False, auto_now_add=True)
+#     date_up= models.DateTimeField(auto_now=True, auto_now_add=False)
