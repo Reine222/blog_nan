@@ -26,4 +26,5 @@ urlpatterns = [
     path('login',views.connect, name="connect"),
     path('confirmer/', views.confirmer, name= 'confirmer'),
     path('confirmation/', views.confirm, name= 'confirmation'),
+    path('comment/', views.comment, name='comment')
 ]

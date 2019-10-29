@@ -7,6 +7,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from twilio.rest import Client
 from django.http import JsonResponse
 import json
+from datetime import datetime, timedelta, timezone, tzinfo
 
 # Create your views here.
 def home(request):
@@ -77,14 +78,8 @@ def category(request):
     }
     return render(request, 'pages/category.html', data )
 
-
-
-
-
 def archive(request):
     return render(request, 'pages/archive.html')
-
-
 
 
 def single(request, pk):
@@ -92,8 +87,8 @@ def single(request, pk):
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
-    commentaires = Commentaire.objects.filter(article__pk = pk )
-    aricle_id = pk
+    commentaires = Commentaire.objects.filter(article__pk = pk ).order_by('-id')[:5]
+    article_id = pk
 
     data ={
         'arts': arts,
@@ -101,7 +96,7 @@ def single(request, pk):
         'categories': categories,
         'article': article,
         'commentaires': commentaires,
-        'aricle_id':aricle_id,
+        'article_id':article_id,
         
     }
 
@@ -233,13 +228,18 @@ def comment(request):
     email = postdata['email']
     subject = postdata['suject']
     message = postdata['message']
+    article_id = postdata['article_id']
+    article = Article.objects.get(pk= article_id)
+    print("name={}, email= {}, date = {}, subject = {}, message ={}, article = {}".format(name,email,datetime.now(), subject,message, article  ))
     succes = False
     try:
         commentaire = Commentaire()
         commentaire.nom = name
         commentaire.email = email
+        commentaire.date = datetime.now()
         commentaire.sujet = subject
         commentaire.message = message
+        commentaire.article = article
         commentaire.save()
         succes = True
         reponse = 'Votre message a bien été envoyé, nous vous remercions de nous avoir contacté !'
