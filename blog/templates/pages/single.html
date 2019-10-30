@@ -62,34 +62,51 @@
                     </div>
                     <div class="navigation-area">
                         <div class="row">
+                            {% for item in pag_Article %}
                             <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                                <div class="thumb">
-                                    <a href="#"><img class="img-fluid" src="/static/img/blog/prev.jpg" alt=""></a>
-                                </div>
-                                <div class="arrow">
-                                    <a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
-                                </div>
-                                <div class="detials">
-                                    <p>Prev Post</p>
-                                    <a href="#">
-                                        <h4>A Discount Toner</h4>
-                                    </a>
-                                </div>
+                                {% if forloop.first %}
+                                    <div class="thumb">
+                                        <a href="{% url 'single' item.id %}"><img src="{{ item.image.url }}" height="70px" width="70px" class="img-fluid"  alt=""></a>
+                                    </div>
+                                    
+                                    {% if pag_Article.has_previous %}
+                                    <div class="arrow">
+                                            <a href="?page={{pag_Article.previous_page_number }}"><span class="lnr text-white lnr-arrow-left"></span></a>
+                                    </div>
+                                    {% endif %}
+                                        
+                                    
+                                    <div class="detials">
+                                        <p>Prev Post</p>
+                                        <a href="#">
+                                            <h4>{{ item.titre|truncatewords:'2' }}</h4>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                                    
                             </div>
+                            
+                            
                             <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                                <div class="detials">
-                                    <p>Next Post</p>
-                                    <a href="#">
-                                        <h4>Cartridge Is Better</h4>
-                                    </a>
-                                </div>
-                                <div class="arrow">
-                                    <a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
-                                </div>
-                                <div class="thumb">
-                                    <a href="#"><img class="img-fluid" src="/static/img/blog/next.jpg" alt=""></a>
-                                </div>
+                                {% if forloop.counter == 2 %}
+                                    <div class="detials">
+                                        <p>Next Post</p>
+                                        <a href="#">
+                                            <h4>{{ item.titre }}</h4>
+                                        </a>
+                                    </div>
+                                    {% if pag_Article.has_next %}
+                                    <div class="arrow">
+                                        <a href="?page={{ pag_Article.next_page_number }}"><span class="lnr text-white lnr-arrow-right"></span></a>
+                                    </div>
+                                    {% endif %}
+                                    <div class="thumb">
+                                        <a href="{% url 'single' item.id %}"><img height="70px" width="70px" class="img-fluid" src="{{ item.image.url }}" alt=""></a>
+                                    </div>
+                                {% endif %}
+                                    
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
                     <div class="comments-area">
