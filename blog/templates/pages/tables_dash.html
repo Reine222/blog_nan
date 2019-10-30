@@ -210,137 +210,21 @@
                         </thead>
 
                         <tbody>
-                        <tr class="even pointer">
+                        {% for articles in article  %}
+                        <tr class=" {% cycle 'even' 'odd' %}  pointer">
                             <td class="a-center ">
                             <input type="checkbox" class="flat" name="table_records">
                             </td>
-                            <td class=" ">Tecnology</td>
-                            <td class="a-right a-right ">Informatic in world</td>
-                            <td class=" ">Today, for me (Gbane) informatic is very important <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">gbane.jpg</td>
+                            <td class=" ">{{articles.categorie.nom}}</td>
+                            <td class="a-right a-right ">{{articles.titre}}</td>
+                            <td class=" ">{{articles.description}}</td>
+                            <td class=" ">{{articles.image.url}}</td>
                             <td class=" ">Visible</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" last"><a href="{% url 'project_detail_dash' %}">View</a>
+                            <td class=" ">{{articles.date_add}}</td>
+                            <td class=" last"><a href="{% url 'project_detail_dash' articles.pk %}">View</a>
                             </td>
                         </tr>
-                        <tr class="odd pointer">
-                            <td class="a-center ">
-                            <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">Tecnology</td>
-                            <td class="a-right a-right ">Informatic in world</td>
-                            <td class=" ">Today, for me (Gbane) informatic is very important </td>
-                            <td class=" ">gbane.jpg</td>
-                            <td class=" ">No Visible</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" last"><a href="{% url 'project_detail_dash' %}">View</a>
-                            </td>
-                        </tr>
-                        <tr class="even pointer">
-                            <td class="a-center ">
-                            <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">Tecnology</td>
-                            <td class="a-right a-right ">Informatic in world</td>
-                            <td class=" ">Today, for me (Gbane) informatic is very important <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">gbane.jpg</td>
-                            <td class=" ">Visible</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" last"><a href="{% url 'project_detail_dash' %}">View</a>
-                            </td>
-                        </tr>
-                        <tr class="odd pointer">
-                            <td class="a-center ">
-                            <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">Tecnology</td>
-                            <td class="a-right a-right ">Informatic in world</td>
-                            <td class=" ">Today, for me (Gbane) informatic is very important <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">gbane.jpg</td>
-                            <td class=" ">Visible</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" last"><a href="{% url 'project_detail_dash' %}">View</a>
-                            </td>
-                        </tr>
-                        <tr class="even pointer">
-                            <td class="a-center ">
-                            <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">Tecnology</td>
-                            <td class="a-right a-right ">Informatic in world</td>
-                            <td class=" ">Today, for me (Gbane) informatic is very important <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">gbane.jpg</td>
-                            <td class=" ">Visible</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" last"><a href="{% url 'project_detail_dash' %}">View</a>
-                            </td>
-                        </tr>
-                        <tr class="odd pointer">
-                            <td class="a-center ">
-                            <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">Tecnology</td>
-                            <td class="a-right a-right ">Informatic in world</td>
-                            <td class=" ">Today, for me (Gbane) informatic is very important </td>
-                            <td class=" ">gbane.jpg</td>
-                            <td class=" ">No Visible</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" last"><a href="{% url 'project_detail_dash' %}">View</a>
-                            </td>
-                        </tr>
-                        <tr class="even pointer">
-                            <td class="a-center ">
-                            <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">Tecnology</td>
-                            <td class="a-right a-right ">Informatic in world</td>
-                            <td class=" ">Today, for me (Gbane) informatic is very important <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">gbane.jpg</td>
-                            <td class=" ">Visible</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" last"><a href="{% url 'project_detail_dash' %}">View</a>
-                            </td>
-                        </tr>
-                        <tr class="odd pointer">
-                            <td class="a-center ">
-                            <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">Tecnology</td>
-                            <td class="a-right a-right ">Informatic in world</td>
-                            <td class=" ">Today, for me (Gbane) informatic is very important <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">gbane.jpg</td>
-                            <td class=" ">Visible</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" last"><a href="{% url 'project_detail_dash' %}">View</a>
-                            </td>
-                        </tr>
-
-                        <tr class="even pointer">
-                            <td class="a-center ">
-                            <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">Tecnology</td>
-                            <td class="a-right a-right ">Informatic in world</td>
-                            <td class=" ">Today, for me (Gbane) informatic is very important </td>
-                            <td class=" ">gbane.jpg</td>
-                            <td class=" ">No Visible</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" last"><a href="{% url 'project_detail_dash' %}">View</a>
-                            </td>
-                        </tr>
-                        <tr class="odd pointer">
-                            <td class="a-center ">
-                            <input type="checkbox" class="flat" name="table_records">
-                            </td>
-                            <td class=" ">Tecnology</td>
-                            <td class="a-right a-right ">Informatic in world</td>
-                            <td class=" ">Today, for me (Gbane) informatic is very important <i class="success fa fa-long-arrow-up"></i></td>
-                            <td class=" ">gbane.jpg</td>
-                            <td class=" ">Visible</td>
-                            <td class=" ">May 23, 2014 11:47:56 PM </td>
-                            <td class=" last"><a href="{% url 'project_detail_dash' %}">View</a>
-                            </td>
-                        </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                     </div>

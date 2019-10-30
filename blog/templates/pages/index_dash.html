@@ -67,7 +67,7 @@
                     </li>
                     <li><a><i class="fa fa-edit"></i>Forms <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                        <li><a href="{% url 'form_aricle_dash' %}">Ajouter un Article</a></li>
+                        <li><a href="{% url 'form_article_dash' %}">Ajouter un Article</a></li>
                         <li><a href="{% url 'form_profil_dash' %}">Profile</a></li>
                         </ul>
                     </li>
@@ -157,7 +157,7 @@
                 <a href="{% url 'tables_dash' %}">
                     <div class="tile-stats">
                     <div class="icon"><i class="fa fa-bar-chart-o"></i></div>
-                    <div class="count">179</div>
+                    <div class="count">{{article.count}}</div>
                     <h3>Posts total</h3>
                     <p>Lorem ipsum psdea itgum rixt.</p>
                     </div>
@@ -174,7 +174,7 @@
                 </a>
             </div>
             <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 ">
-                <a href="post_valid.html">
+                <a href="{% url 'post_valid_dash' %}">
                     <div class="tile-stats">
                     <div class="icon"><i class="fa fa-check-square-o green"></i></div>
                     <div class="count">101</div>
@@ -256,7 +256,7 @@
                             <div class="flex">
                                 <ul class="list-inline count2">
                                 <li>
-                                    <h3>123</h3>
+                                    <h3>{{article.count}}</h3>
                                     <span>Articles</span>
                                 </li>
                                 <li>
