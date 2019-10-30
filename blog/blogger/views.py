@@ -14,10 +14,10 @@ import uuid
 # Create your views here.
 def home(request):
     
-    pop_articles = Article.objects.filter(statut=True)[:4]
+    pop_articles = Article.objects.filter(statut=True, valider=True)[:4]
     categories = Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
-    articlee= Article.objects.filter(statut=True)[1:]
+    articlee= Article.objects.filter(statut=True, valider=True)[1:]
     #arti= Article.objects.filter(statut=True, valider=True )
 
     if request.POST :
