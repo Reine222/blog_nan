@@ -22,7 +22,7 @@ def home(request):
     if request.POST :
         recherche = request.POST.get('search2')
         pag_Articles =Article.objects.all().filter(titre__icontains= recherche).order_by('titre')
-       
+        
     else:
         pag_Articles = Article.objects.all().order_by('-id')
         
@@ -32,7 +32,7 @@ def home(request):
         pag_Article = paginator.get_page(page)
     except EmptyPage:
         pag_Article = paginator(1)
-    except PageNotAnInteger:
+    except   PageNotAnInteger:
         pag_Article = paginator(paginator.num_pages)
 
     #firstcat = Category.objects.filter(statut=True)[:1]
@@ -85,6 +85,22 @@ def category(request):
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
+
+    if request.POST :
+        recherche = request.POST.get('searchcat')
+        pag_Articles = article.filter(titre__icontains= recherche).order_by('titre')
+       
+    else:
+        pag_Articles = article.order_by('-id')
+        
+    try:
+        paginator = Paginator(pag_Articles, 4)
+        page = request.GET.get('page')
+        pag_Article = paginator.get_page(page)
+    except EmptyPage:
+        pag_Article = paginator(1)
+    except   PageNotAnInteger:
+        pag_Article = paginator(paginator.num_pages)
     
     data= {
         'catego': catego,
@@ -92,6 +108,7 @@ def category(request):
         'articles': pop_articles,
         'categories': categories,
         'article': article,
+        'pag_Article':pag_Article,
     }
     return render(request, 'pages/category.html', data )
 
@@ -102,12 +119,29 @@ def archive(request):
     categories = Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
     
+    if request.POST :
+        recherche = request.POST.get('searcharchive')
+        pag_Articles = article.filter(titre__icontains= recherche).order_by('titre')
+       
+    else:
+        pag_Articles = article.order_by('-id')
+        
+    try:
+        paginator = Paginator(pag_Articles, 4)
+        page = request.GET.get('page')
+        pag_Article = paginator.get_page(page)
+    except EmptyPage:
+        pag_Article = paginator(1)
+    except   PageNotAnInteger:
+        pag_Article = paginator(paginator.num_pages)
+
     data= {
         'catego': catego,
         'articles': articles,
         'articles': pop_articles,
         'categories': categories,
         'article': article,
+        'pag_Article':pag_Article,
     }
     return render(request, 'pages/archive.html', data)
 
@@ -250,6 +284,7 @@ def register(request):
                 print(req.text)
                 return redirect('confirmer')
                 
+          
                 
                 
             except:

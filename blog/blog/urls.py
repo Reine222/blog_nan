@@ -37,6 +37,7 @@ urlpatterns = [
     path('graphql/', GraphQLView.as_view(graphiql=True)),
     path('tinymce/', include('tinymce.urls')),
     path('admin/filebrowser/', site.urls),
+    path('administration/', include('administration.urls')),
 ]
 
 
