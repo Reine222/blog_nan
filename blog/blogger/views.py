@@ -144,20 +144,6 @@ def codes():
 ########################## def twilio ######################################
 
 
-def genere():
-    code= codes()
-    account_sid = 'ACcd70283e1ee00056836d33ddb10ceb53'
-    auth_token = 'b3169a7d3ed1082856a8dd7c5f9f3432'
-    client = Client(account_sid, auth_token)
-
-    message = client.messages \
-        .create(
-            body='Votre Code de validation est le suivant: {}'.format(code),
-            from_='+18049772449',
-            to='+22553858586'
-        )
-    return(message.sid)
-    print(message.sid)
 
 
 
@@ -245,14 +231,14 @@ def register(request):
                 user.password = password
                 user.set_password=user.password
                 user.save()
-                prof = Profile(nom=nom,prenom=prenom,description=description,statut=statut,image=image,email=email,contact=contact,username=username,fb_lien=fb_lien,tweet_lien=tweet_lien,ball_lien=ball_lien,Be_lien=Be_lien)
-                prof.save()
-                genere()
+                #prof = Profile(nom=nom,prenom=prenom,description=description,statut=statut,image=image,email=email,contact=contact,username=username,fb_lien=fb_lien,tweet_lien=tweet_lien,ball_lien=ball_lien,Be_lien=Be_lien)
+                #prof.user.save()
+                
                 print('success')
-                
-                
-                
                 return redirect('confirmer')
+                genere()
+                
+                
             except:
                 print('error')
                 
