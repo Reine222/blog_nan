@@ -143,7 +143,7 @@
         <div class="">
             <div class="page-title">
             <div class="title_left">
-                <h3>Mes Articles<small> en attente</small> </h3>
+                <h3>Mes Articles<small> Validés</small> </h3>
             </div>
 
             <div class="title_right">
@@ -183,25 +183,28 @@
                 <div class="x_content">
 
                     <div class="row">
-                    <div class="col-md-55">
+                    {% for artic in articles %}
+                        <div class="col-md-55">
                         <div class="thumbnail">
                         <div class="image view view-first">
-                            <img style="width: 100%; display: block;" src="/static/admin/images/media.jpg" alt="image" />
+                            <img style="width: 100%; display: block;" src="{{ artic.image.url }}" alt="image" />
                             <div class="mask">
-                            <p>Detail</p>
+                            <p>{{ artic.titre }}</p>
                             <div class="tools tools-bottom">
-                                <a href="{% url 'project_detail_dash' %}"><i class="fa fa-link"></i></a>
+                                <a href="{% url 'project_detail_dash' artic.pk  %}"><i class="fa fa-link"></i></a>
                                 <a href="{% url 'form_article_dash' %}"><i class="fa fa-pencil"></i></a>
                                 <a href="#"><i class="fa fa-times"></i></a>
                             </div>
                             </div>
                         </div>
                         <div class="caption">
-                            <p>Snow and Ice Incoming for the South</p>
+                            <p>{{ artic.description }}</p>
                         </div>
                         </div>
                     </div>
-                    <div class="col-md-55">
+                    {% endfor %}
+                    
+                    {% comment %} <div class="col-md-55">
                         <div class="thumbnail">
                         <div class="image view view-first">
                             <img style="width: 100%; display: block;" src="/static/admin/images/media.jpg" alt="image" />
@@ -369,7 +372,7 @@
                             <p>Snow and Ice Incoming</p>
                         </div>
                         </div>
-                    </div>
+                    </div> {% endcomment %}
                     </div>
                 </div>
                 </div>

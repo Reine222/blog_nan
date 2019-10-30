@@ -18,10 +18,11 @@ def home(request):
     categories = Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
     articlee= Article.objects.filter(statut=True)[1:]
+    arti= Article.objects.filter(statut=True, valider=True )
 
     if request.POST :
         recherche = request.POST.get('search2')
-        pag_Articles =Article.objects.all().filter(titre__icontains= recherche).order_by('titre')
+        pag_Articles =arti.filter(titre__icontains= recherche).order_by('titre')
         
     else:
         pag_Articles = Article.objects.all().order_by('-id')
@@ -47,6 +48,7 @@ def home(request):
         'articles': pop_articles,
         #'act_articles': act_articles,
         'article': article,
+        'arti': arti,
         'articlee': articlee,
         'pag_Article': pag_Article,
         
@@ -84,7 +86,7 @@ def category(request):
     articles = Article.objects.filter(statut=True)
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
-    article= Article.objects.filter(statut=True)
+    article= Article.objects.filter(statut=True, valider=True)
 
     if request.POST :
         recherche = request.POST.get('searchcat')
