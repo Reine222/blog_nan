@@ -57,13 +57,23 @@ def home(request):
 def selectCat(request, id):
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
-    selectcat_arts = Article.objects.filter(categorie__pk = id )
-    print('selectcat_arts=', selectcat_arts)
+
+    selectcat_arts = Article.objects.filter(categorie__pk = id ).order_by('-id')
+        
+    try:
+        paginator = Paginator(selectcat_arts, 3)
+        page = request.GET.get('page')
+        pag_Article = paginator.get_page(page)
+    except EmptyPage:
+        pag_Article = paginator(1)
+    except PageNotAnInteger:
+        pag_Article = paginator(paginator.num_pages)
 
     data ={
         'categories': categories,
         'articles': pop_articles,
         'act_articles': selectcat_arts,
+        'pag_Article':pag_Article,
     }
     return render(request, 'pages/index.html', data )
 
@@ -107,7 +117,7 @@ def single(request, pk):
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
-    commentaires = Commentaire.objects.filter(article__pk = pk ).order_by('-id')[:5]
+    commentaires = Commentaire.objects.filter(article__pk = pk ).order_by('-id')
     article_id = pk
 
     data ={
@@ -329,7 +339,6 @@ def comment(request):
     message = postdata['message']
     article_id = postdata['article_id']
     article = Article.objects.get(pk= article_id)
-    print("name={}, email= {}, date = {}, subject = {}, message ={}, article = {}".format(name,email,datetime.now(), subject,message, article  ))
     succes = False
     try:
         commentaire = Commentaire()
