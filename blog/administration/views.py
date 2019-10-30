@@ -13,7 +13,7 @@ def admin_visiteur_dash(request):
     return render(request, 'pages/admin_visiteur_dash.html')
 
 def detail_visiteur_dash(request):
-    return render(request, 'pages/detail_visiteur_dash.html')
+    return render(request, 'pages/detaill_visiteur_dash.html')
 
 def page_dash(request):
     return render(request, 'pages/page_dash.html')

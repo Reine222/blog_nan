@@ -63,8 +63,9 @@
                     <div class="navigation-area">
                         <div class="row">
                             {% for item in pag_Article %}
+                            {% if forloop.first %}
                             <div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
-                                {% if forloop.first %}
+                                
                                     <div class="thumb">
                                         <a href="{% url 'single' item.id %}"><img src="{{ item.image.url }}" height="70px" width="70px" class="img-fluid"  alt=""></a>
                                     </div>
@@ -78,20 +79,21 @@
                                     
                                     <div class="detials">
                                         <p>Prev Post</p>
-                                        <a href="#">
+                                        <a href="{% url 'single' item.id %}">
                                             <h4>{{ item.titre|truncatewords:'2' }}</h4>
                                         </a>
                                     </div>
-                                {% endif %}
+                               
                                     
                             </div>
+                            {% endif %}
                             
-                            
+                            {% if forloop.counter == 2 %}
                             <div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
-                                {% if forloop.counter == 2 %}
+                                
                                     <div class="detials">
                                         <p>Next Post</p>
-                                        <a href="#">
+                                        <a href="{% url 'single' item.id %}">
                                             <h4>{{ item.titre }}</h4>
                                         </a>
                                     </div>
@@ -103,9 +105,10 @@
                                     <div class="thumb">
                                         <a href="{% url 'single' item.id %}"><img height="70px" width="70px" class="img-fluid" src="{{ item.image.url }}" alt=""></a>
                                     </div>
-                                {% endif %}
+                                
                                     
                             </div>
+                            {% endif %}
                             {% endfor %}
                         </div>
                     </div>
