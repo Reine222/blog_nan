@@ -22,7 +22,7 @@ def home(request):
     if request.POST :
         recherche = request.POST.get('search2')
         pag_Articles =Article.objects.all().filter(titre__icontains= recherche).order_by('titre')
-       
+        
     else:
         pag_Articles = Article.objects.all().order_by('-id')
         

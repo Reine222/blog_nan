@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'blogger.apps.BloggerConfig',
     'contact.apps.ContactConfig',
     'configuration.apps.ConfigurationConfig',
+    'administration.apps.AdministrationConfig',
     'api.apps.ApiConfig',
     'rest_framework',
     'tinymce',
