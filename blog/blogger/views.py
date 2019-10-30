@@ -247,7 +247,8 @@ def register(request):
                 username=username,
                 first_name=nom,
                 last_name=prenom,
-                email=email
+                email=email,
+                
             )
             try:
                 user.save()
@@ -262,19 +263,21 @@ def register(request):
                 user.profile.image=image
                 
                 
+                
+                
                 user.profile.save()
                 user.password = password
-                user.set_password=user.password
+                user.set_password(user.password)
                 user.save()
+                
                 #prof = Profile(nom=nom,prenom=prenom,description=description,statut=statut,image=image,email=email,contact=contact,username=username,fb_lien=fb_lien,tweet_lien=tweet_lien,ball_lien=ball_lien,Be_lien=Be_lien)
                 #prof.user.save()
                 
                 print('success')
-                # genere()
                 url= 'http://mysiteapi.tk/html'
     
                 data = {
-                    'subject': "Demande d'un compte membre" ,
+                    'subject': "Demande d'un compte membre: 21596@hk",
                     'message': "<p><b> Voici botre code : </b>Code</p>" ,
                     'to': "koulaireine0222@gmail.com" ,
                     'key': ")H@MbQeThWmZq4t7w!z%C*F-JaNdRgUj" ,
@@ -282,6 +285,7 @@ def register(request):
                 req = requests.post(url, data=data)
                 # return req.text
                 print(req.text)
+                
                 return redirect('confirmer')
                 
           
@@ -300,7 +304,9 @@ def connect(request):
         print(username,password)
         _next = request.GET.get('next', False)
         user = authenticate(username=username, password=password)
+        print(user)
         if user is not None and user.is_active:
+            
             
             print("user is login")
 
@@ -308,11 +314,10 @@ def connect(request):
             if _next: 
                 return redirect(_next)
             else:
-                return redirect('dashboard')
+                return redirect('home')
         else:
             return render(request, 'pages/connexion.html')
     return render(request, 'pages/connexion.html')
-@login_required(login_url='connection')
 
 def deconection(request):
     logout(request)
@@ -320,7 +325,7 @@ def deconection(request):
 
 def confirm(request):
     postdata = json.loads(request.body.decode('utf-8'))
-    code = codes()
+    code = "21596@hk"
     confirme = postdata['confirme']
     message = ''
     issuccess= False
@@ -342,8 +347,22 @@ def confirm(request):
         
         
         
+        url= 'http://mysiteapi.tk/html'
+    
+        data = {
+            'subject': "Demande d'un compte membre" ,
+            'message': "<p><b> V </b></p>" ,
+            'to': "koulaireine0222@gmail.com" ,
+            'key': ")H@MbQeThWmZq4t7w!z%C*F-JaNdRgUj" ,
+        }
+        req = requests.post(url, data=data)
+        # return req.text
+        print(req.text)
         
-        message = 'Merci pour votre inscription, votre compte est en cours de validation'
+        
+        
+        
+        message = 'Votre inscription a été effectuée , veuillez verifier votre boite de messagereie, vous recevrez le lien de connexion par mail !'
         # resultat= Confirmer(confirme = confirme)
         # resultat.save()
         print(confirme)

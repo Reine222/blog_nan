@@ -68,6 +68,7 @@ class Profile(models.Model):
     contact =models.CharField(max_length=50)
     valider =models.CharField(max_length=50)
     
+    
     # Initialisation a la creation
     
     @receiver(post_save, sender=User)
