@@ -4,8 +4,10 @@ from blogger.models import *
 # Create your views here.
 
 def index_dash(request):
-    article= Article.objects.filter(statut=True, )
-    context = {"article": article,}
+    article= Article.objects.filter(statut=True)
+    articles= Article.objects.filter(statut=True, valider=True )
+    articlee= Article.objects.filter(statut=True, valider=False )
+    context = {"article": article, "articles": articles, "articlee": articlee,}
     
     return render(request, 'pages/index_dash.html', context)
 
@@ -19,13 +21,20 @@ def page_dash(request):
     return render(request, 'pages/page_dash.html')
 
 def post_attend_dash(request):
-    return render(request, 'pages/post_attend_dash.html')
+    
+    articlee= Article.objects.filter(statut=True, valider=False )
+    context = {"articlee": articlee,}
+    return render(request, 'pages/post_attend_dash.html', context)
 
 def post_partage_dash(request):
     return render(request, 'pages/post_partage_dash.html')
 
 def post_valid_dash(request):
-    return render(request, 'pages/post_valid_dash.html')
+    
+    articles= Article.objects.filter(statut=True, valider=True )
+    context = {"articles": articles,}
+    
+    return render(request, 'pages/post_valid_dash.html', context)
 
 def profil_visiteur_dash(request):
     return render(request, 'pages/profil_visiteur_dash.html')
