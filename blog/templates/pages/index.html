@@ -210,11 +210,11 @@
 
 					<div class="single-widget popular-posts-widget">
 						<h4 class="title">Popular Posts</h4>
+						{% for item in articles %}
 						<div class="blog-list ">
-							{% for item in articles %}
 							<div class="single-popular-post d-flex flex-row">
 								<div class="popular-thumb">
-									<img class="img-fluid" src="{{ item.image.url }}" alt="">
+									<img class="img-fluid" src="{{ item.image.url }}" width='80px'  height='80px' alt="">
 								</div>
 								<div class="popular-details">
 									<a href="blog-details.html">
@@ -223,8 +223,8 @@
 									<p class="text-uppercase">{{ item.date_add }}</p>
 								</div>
 							</div>
-							{% endfor %}
 						</div>
+						{% endfor %}
 					</div>
 
 					<div class="single-widget category-widget">
