@@ -148,11 +148,26 @@ def archive(request):
 
 def single(request, pk):
     arts = Article.objects.get(pk=pk)
+   
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
     commentaires = Commentaire.objects.filter(article__pk = pk ).order_by('-id')
     article_id = pk
+    #user articles
+    #user = arts.user_id.id
+    #user_articles = Article.objects.filter(user_id__id=user).order_by('pk')
+    all_arts = Article.objects.filter(statut=True).exclude(pk=article_id).order_by('pk')
+    #print(user_articles)
+    try:
+        paginator = Paginator(all_arts, 2)
+        page = request.GET.get('page')
+        pag_Article = paginator.get_page(page)
+        print('pag_Article = ', pag_Article )
+    except EmptyPage:
+        pag_Article = paginator(1)
+    except PageNotAnInteger:
+        pag_Article = paginator(paginator.num_pages)
 
     data ={
         'arts': arts,
@@ -161,6 +176,8 @@ def single(request, pk):
         'article': article,
         'commentaires': commentaires,
         'article_id':article_id,
+        #'user_articles':user_articles,
+        'pag_Article': pag_Article,
         
     }
 
