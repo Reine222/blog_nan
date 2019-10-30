@@ -29,8 +29,8 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 				{% for cart in catego %}
-				<li class="nav-item">
-                	<a class="nav-link" id="tab{{forloop.counter|add:'1'}}" data-toggle="tab" href="#world-tab{{forloop.counter|add:'1'}}" role="tab" aria-controls="world-tab-2" aria-selected="false">{{ cart.nom }}</a>
+				<li class="nav-item page-item page-link">
+                	<a  id="tab{{forloop.counter|add:'1'}}" data-toggle="tab" href="#world-tab{{forloop.counter|add:'1'}}" role="tab" aria-controls="world-tab-2" aria-selected="false">{{ cart.nom }}</a>
                 </li>
                                 
                 {% endfor %}
@@ -152,12 +152,13 @@
 
 					<div class="single-widget popular-posts-widget">
 						<h4 class="title">Popular Posts</h4>
-						<div class="blog-list ">
+						
 						{% for arti in article %}
-                        {% if forloop.counter <= 4 %}
+						{% if forloop.counter <= 4 %}
+						<div class="blog-list ">
                             <div class="single-popular-post d-flex flex-row">
                                 <div class="popular-thumb">
-                                    <img class="img-fluid" src="{{ arti.image.url }}" alt="">
+                                    <img class="img-fluid" src="{{ arti.image.url }}" width='80px'  height='80px' alt="">
                                 </div>
                                 <div class="popular-details">
                                     <a href="{% url 'single' arti.pk %}">
@@ -165,10 +166,11 @@
                                     </a>
                                     <p class="text-uppercase">02 hours ago</p>
                                 </div>
-                            </div>
+							</div>
+						</div>
                         {% endif %}
                         {% endfor %}
-						</div>
+						
 					</div>
 
 					<div class="single-widget category-widget">
