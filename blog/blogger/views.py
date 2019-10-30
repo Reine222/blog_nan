@@ -18,14 +18,14 @@ def home(request):
     categories = Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
     articlee= Article.objects.filter(statut=True)[1:]
-    arti= Article.objects.filter(statut=True, valider=True )
+    #arti= Article.objects.filter(statut=True, valider=True )
 
     if request.POST :
         recherche = request.POST.get('search2')
         pag_Articles =arti.filter(titre__icontains= recherche).order_by('titre')
         
     else:
-        pag_Articles = Article.objects.all().order_by('-id')
+        pag_Articles = Article.objects.filter(statut=True, valider=True )
         
     try:
         paginator = Paginator(pag_Articles, 3)
@@ -48,7 +48,7 @@ def home(request):
         'articles': pop_articles,
         #'act_articles': act_articles,
         'article': article,
-        'arti': arti,
+        #'arti': arti,
         'articlee': articlee,
         'pag_Article': pag_Article,
         

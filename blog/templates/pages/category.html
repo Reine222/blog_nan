@@ -154,12 +154,13 @@
 
 					<div class="single-widget popular-posts-widget">
 						<h4 class="title">Popular Posts</h4>
-						<div class="blog-list ">
+						
 						{% for arti in article %}
-                        {% if forloop.counter <= 4 %}
+						{% if forloop.counter <= 4 %}
+						<div class="blog-list ">
                             <div class="single-popular-post d-flex flex-row">
                                 <div class="popular-thumb">
-                                    <img class="img-fluid" src="{{ arti.image.url }}" alt="">
+                                    <img class="img-fluid" src="{{ arti.image.url }}" width='80px'  height='80px' alt="">
                                 </div>
                                 <div class="popular-details">
                                     <a href="{% url 'single' arti.pk %}">
@@ -167,10 +168,11 @@
                                     </a>
                                     <p class="text-uppercase">02 hours ago</p>
                                 </div>
-                            </div>
+							</div>
+						</div>
                         {% endif %}
                         {% endfor %}
-						</div>
+						
 					</div>
 
 					<div class="single-widget category-widget">
