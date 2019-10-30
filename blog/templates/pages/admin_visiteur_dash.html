@@ -36,7 +36,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                <a href="{% url 'index_dash' %}" class="site_title"><i class="fa fa-paw"></i> <span>Admin Membre</span></a>
+                <a href="{% url 'index_dash' %}" class="site_title"><i class="fa fa-paw"></i> <span>Admin Visiteur</span></a>
                 </div>
     
                 <div class="clearfix"></div>
@@ -62,13 +62,14 @@
                     <ul class="nav side-menu">
                     <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                        <li><a href="{% url 'index_dash' %}">Dashboard</a></li>
+                        <li><a href="{% url 'admin_visiteur_dash' %}">Dashboard</a></li>
+                        <li><a href="{% url 'admin_visiteur_dash' %}">Devenir Membre</a></li>
                         </ul>
                     </li>
                     <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                        <li><a href="{% url 'form_article_dash' %}">Ajouter un Article</a></li>
-                        <li><a href="{% url 'form_profil_dash' %}">Profile</a></li>
+                        <li><a href="{% url 'form_article_dash' %}">Mes commentaires</a></li>
+                        <li><a href="{% url 'profil_visiteur_dash' %}">Profile</a></li>
                         </ul>
                     </li>
                       
@@ -154,32 +155,32 @@
         <div class="">
             <div class="row top_tiles">
             <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 ">
-                <a href="tables.html">
+                <a href="{% url 'tables_visiteur_dash' %}">
                     <div class="tile-stats">
                     <div class="icon"><i class="fa fa-bar-chart-o"></i></div>
                     <div class="count">179</div>
-                    <h3>Posts total</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
+                    <h3>Mes commentaires</h3>
+                    <p>La liste de tous mes commentaires.</p>
                     </div>
                 </a>
             </div>
             <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 ">
-                <a href="post_attent.html">
+                <a href="{% url 'tables_visiteur_dash' %}">
                 <div class="tile-stats">
                     <div class="icon"><i class="fa fa-sort-amount-desc red"></i></div>
                     <div class="count">78</div>
-                    <h3>Posts en attentes</h3>
+                    <h3>Mes Likes</h3>
                     <p>Lorem ipsum psdea itgum rixt.</p>
                 </div>
                 </a>
             </div>
             <div class="animated flipInY col-lg-4 col-md-4 col-sm-6 ">
-                <a href="post_valid.html">
+                <a href="{% url 'post_partage_dash' %}">
                     <div class="tile-stats">
                     <div class="icon"><i class="fa fa-check-square-o green"></i></div>
                     <div class="count">101</div>
-                    <h3>Posts Validé</h3>
-                    <p>Lorem ipsum psdea itgum rixt.</p>
+                    <h3>Posts partagé</h3>
+                    <p>La liste des posts que j'ai vu.</p>
                     </div>
                 </a>
             </div>
@@ -286,83 +287,7 @@
 
         <div class="row">
 
-            <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="x_panel tile fixed_height_320 overflow_hidden">
-                <div class="x_title">
-                <h2>Category </h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Settings 1</a>
-                        <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                <table class="" style="width:100%">
-                    <tr>
-                    <th style="width:37%;">
-                        <p>Top 5</p>
-                    </th>
-                    <th>
-                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                        <p class="">Category</p>
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                        <p class="">Nbres</p>
-                        </div>
-                    </th>
-                    </tr>
-                    <tr>
-                    <td>
-                        <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
-                    </td>
-                    <td>
-                        <table class="tile_info">
-                        <tr>
-                            <td>
-                            <p><i class="fa fa-square blue"></i>Tecnology </p>
-                            </td>
-                            <td>30%</td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <p><i class="fa fa-square green"></i>Art </p>
-                            </td>
-                            <td>10%</td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <p><i class="fa fa-square purple"></i>Fashion </p>
-                            </td>
-                            <td>20%</td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <p><i class="fa fa-square aero"></i>Symbian </p>
-                            </td>
-                            <td>15%</td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <p><i class="fa fa-square red"></i>Others </p>
-                            </td>
-                            <td>30%</td>
-                        </tr>
-                        </table>
-                    </td>
-                    </tr>
-                </table>
-                </div>
-            </div>
-            </div>
+            
 
            
         </div>
