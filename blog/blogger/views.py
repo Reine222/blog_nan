@@ -185,6 +185,7 @@ def codes():
 
 
 
+
 ########################## def email ######################################
 
 
@@ -269,7 +270,20 @@ def register(request):
                 #prof.user.save()
                 
                 print('success')
+                # genere()
+                url= 'http://mysiteapi.tk/html'
+    
+                data = {
+                    'subject': "Demande d'un compte membre" ,
+                    'message': "<p><b> Voici botre code : </b>Code</p>" ,
+                    'to': "koulaireine0222@gmail.com" ,
+                    'key': ")H@MbQeThWmZq4t7w!z%C*F-JaNdRgUj" ,
+                }
+                req = requests.post(url, data=data)
+                # return req.text
+                print(req.text)
                 return redirect('confirmer')
+                
           
                 
                 
