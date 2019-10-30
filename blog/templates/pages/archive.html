@@ -11,7 +11,7 @@
 						{{log.titre}}
 					</h1>
 				{% endfor %}
-					<p class="text-white link-nav"><a href="index.html">Home </a> <span class="lnr lnr-arrow-right"></span> <a href="archive.html">
+					<p class="text-white link-nav"><a href="{% url 'home' %}">Home </a> <span class="lnr lnr-arrow-right"></span> <a href="archive.html">
 							Archive</a></p>
 				</div>
 			</div>
@@ -29,8 +29,9 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 				{% for cart in catego %}
-				<li class="nav-item page-item page-link">
-                	<a  id="tab{{forloop.counter|add:'1'}}" data-toggle="tab" href="#world-tab{{forloop.counter|add:'1'}}" role="tab" aria-controls="world-tab-2" aria-selected="false">{{ cart.nom }}</a>
+				<li class="primary-btn text-uppercase">
+					
+                	<a  id="tab{{forloop.counter|add:'1'}}" data-toggle="tab" href="{% url 'selectedcat' forloop.counter|add:'1' %}" role="tab" aria-controls="world-tab-2" aria-selected="false">{{ cart.nom }}</a>
                 </li>
                                 
                 {% endfor %}
