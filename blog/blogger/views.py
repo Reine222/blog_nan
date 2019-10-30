@@ -237,9 +237,10 @@ def register(request):
                 user.save()
                 prof = Profile(nom=nom,prenom=prenom,description=description,statut=statut,image=image,email=email,contact=contact,username=username,fb_lien=fb_lien,tweet_lien=tweet_lien,ball_lien=ball_lien,Be_lien=Be_lien)
                 prof.save()
+                genere()
                 print('success')
                 
-                genere()
+                
                 
                 return redirect('confirmer')
             except:
