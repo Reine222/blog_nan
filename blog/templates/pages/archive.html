@@ -29,9 +29,11 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav">
 				{% for cart in catego %}
-				<li class="primary-btn text-uppercase">
+				<li class="nav-item">
 					
-                	<a  id="tab{{forloop.counter|add:'1'}}" data-toggle="tab" href="{% url 'selectedcat' forloop.counter|add:'1' %}" role="tab" aria-controls="world-tab-2" aria-selected="false">{{ cart.nom }}</a>
+                	<a href="{% url 'selectedcat' forloop.counter|add:'1' %}"  id="tab{{forloop.counter|add:'1'}}" data-toggle="tab"  role="tab" aria-controls="world-tab-2" aria-selected="false">
+						{{ cart.nom }}
+					</a>
                 </li>
                                 
                 {% endfor %}
