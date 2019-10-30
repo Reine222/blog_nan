@@ -27,7 +27,7 @@
         <div class="col-md-3 left_col">
         <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Admin Membre</span></a>
+            <a href="{% url'index_dash' %}" class="site_title"><i class="fa fa-paw"></i> <span>Admin Membre</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -53,13 +53,13 @@
                 <ul class="nav side-menu">
                 <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="{% url'index_dash' %}">Dashboard</a></li>
                     </ul>
                 </li>
                 <li><a><i class="fa fa-edit"></i> Forms <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                    <li><a href="form_article.html">Ajouter un Article</a></li>
-                    <li><a href="form_profile.html">Profile</a></li>
+                    <li><a href="{% url'form_article_dash'%}">Ajouter un Article</a></li>
+                    <li><a href="{% url'form_profil_dash' %}">Profile</a></li>
                     </ul>
                 </li>
                   
@@ -190,8 +190,8 @@
                             <div class="mask">
                             <p>Detail</p>
                             <div class="tools tools-bottom">
-                                <a href="project_detail.html"><i class="fa fa-link"></i></a>
-                                <a href="form_article.html"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url'project_detail_dash'%}"><i class="fa fa-link"></i></a>
+                                <a href="{% url'form_article_dash'%}"><i class="fa fa-pencil"></i></a>
                                 <a href="#"><i class="fa fa-times"></i></a>
                             </div>
                             </div>
@@ -208,8 +208,8 @@
                             <div class="mask">
                             <p>Detail</p>
                             <div class="tools tools-bottom">
-                                <a href="project_detail.html"><i class="fa fa-link"></i></a>
-                                <a href="form_article.html"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url'project_detail_dash'%}"><i class="fa fa-link"></i></a>
+                                <a href="{% url'form_article_dash'%}"><i class="fa fa-pencil"></i></a>
                                 <a href="#"><i class="fa fa-times"></i></a>
                             </div>
                             </div>
@@ -226,8 +226,8 @@
                             <div class="mask">
                             <p>Detail</p>
                             <div class="tools tools-bottom">
-                                <a href="project_detail.html"><i class="fa fa-link"></i></a>
-                                <a href="form_article.html"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url'project_detail_dash'%}"><i class="fa fa-link"></i></a>
+                                <a href="{% url'form_article_dash'%}"><i class="fa fa-pencil"></i></a>
                                 <a href="#"><i class="fa fa-times"></i></a>
                             </div>
                             </div>
@@ -244,8 +244,8 @@
                             <div class="mask">
                             <p>Detail</p>
                             <div class="tools tools-bottom">
-                                <a href="project_detail.html"><i class="fa fa-link"></i></a>
-                                <a href="form_article.html"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url'project_detail_dash'%}"><i class="fa fa-link"></i></a>
+                                <a href="{% url'form_article_dash'%}"><i class="fa fa-pencil"></i></a>
                                 <a href="#"><i class="fa fa-times"></i></a>
                             </div>
                             </div>
@@ -262,8 +262,8 @@
                             <div class="mask">
                             <p>Detail</p>
                             <div class="tools tools-bottom">
-                                <a href="project_detail.html"><i class="fa fa-link"></i></a>
-                                <a href="form_article.html"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url'project_detail_dash'%}"><i class="fa fa-link"></i></a>
+                                <a href="{% url'form_article_dash'%}"><i class="fa fa-pencil"></i></a>
                                 <a href="#"><i class="fa fa-times"></i></a>
                             </div>
                             </div>
@@ -281,8 +281,8 @@
                             <img style="width: 100%; display: block;" src="/static/admin/images/media.jpg" alt="image" />
                             <div class="mask no-caption">
                             <div class="tools tools-bottom">
-                                <a href="project_detail.html"><i class="fa fa-link"></i></a>
-                                <a href="form_article.html"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url'project_detail_dash'%}"><i class="fa fa-link"></i></a>
+                                <a href="{% url'form_article_dash'%}"><i class="fa fa-pencil"></i></a>
                                 <a href="#"><i class="fa fa-times"></i></a>
                             </div>
                             </div>
@@ -300,8 +300,8 @@
                             <img style="width: 100%; display: block;" src="/static/admin/images/media.jpg" alt="image" />
                             <div class="mask no-caption">
                             <div class="tools tools-bottom">
-                                <a href="project_detail.html"><i class="fa fa-link"></i></a>
-                                <a href="form_article.html"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url'project_detail_dash'%}"><i class="fa fa-link"></i></a>
+                                <a href="{% url'form_article_dash'%}"><i class="fa fa-pencil"></i></a>
                                 <a href="#"><i class="fa fa-times"></i></a>
                             </div>
                             </div>
@@ -319,8 +319,8 @@
                             <img style="width: 100%; display: block;" src="/static/admin/images/media.jpg" alt="image" />
                             <div class="mask no-caption">
                             <div class="tools tools-bottom">
-                                <a href="project_detail.html"><i class="fa fa-link"></i></a>
-                                <a href="form_article.html"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url'project_detail_dash'%}"><i class="fa fa-link"></i></a>
+                                <a href="{% url'form_article_dash'%}"><i class="fa fa-pencil"></i></a>
                                 <a href="#"><i class="fa fa-times"></i></a>
                             </div>
                             </div>
@@ -338,8 +338,8 @@
                             <img style="width: 100%; display: block;" src="/static/admin/images/media.jpg" alt="image" />
                             <div class="mask no-caption">
                             <div class="tools tools-bottom">
-                                <a href="project_detail.html"><i class="fa fa-link"></i></a>
-                                <a href="form_article.html"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url'project_detail_dash'%}"><i class="fa fa-link"></i></a>
+                                <a href="{% url'form_article_dash'%}"><i class="fa fa-pencil"></i></a>
                                 <a href="#"><i class="fa fa-times"></i></a>
                             </div>
                             </div>
@@ -357,8 +357,8 @@
                             <img style="width: 100%; display: block;" src="/static/admin/images/media.jpg" alt="image" />
                             <div class="mask no-caption">
                             <div class="tools tools-bottom">
-                                <a href="project_detail.html"><i class="fa fa-link"></i></a>
-                                <a href="form_article.html"><i class="fa fa-pencil"></i></a>
+                                <a href="{% url'project_detail_dash'%}"><i class="fa fa-link"></i></a>
+                                <a href="{% url'form_article_dash'%}"><i class="fa fa-pencil"></i></a>
                                 <a href="#"><i class="fa fa-times"></i></a>
                             </div>
                             </div>
