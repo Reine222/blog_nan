@@ -14,34 +14,39 @@ def home(request):
     
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
-    firstcat = Category.objects.filter(statut=True)[:1]
     article= Article.objects.filter(statut=True)
     articlee= Article.objects.filter(statut=True)[1:]
-    
-    
-    for item in firstcat:
-        first= item
-        act_articles= first.article_cat.all()
 
-    
-    # try:
-    #     paginator = Paginator(act_articles, 1)
-    #     page = request.GET.get('page', 1)
-    #     cat_articles = paginator.get_page(page)
-    # except EmptyPage:
-    #     cat_articles = paginator(1)
-    # except PageNotAnInteger:
-    #     cat_articles = paginator(paginator.num_pages)
-    
+    if request.POST :
+        recherche = request.POST.get('search2')
+        pag_Articles =Article.objects.all().filter(titre__icontains= recherche).order_by('titre')
+       
+    else:
+        pag_Articles = Article.objects.all().order_by('-id')
+        
+    try:
+        paginator = Paginator(pag_Articles, 3)
+        page = request.GET.get('page')
+        pag_Article = paginator.get_page(page)
+    except EmptyPage:
+        pag_Article = paginator(1)
+    except PageNotAnInteger:
+        pag_Article = paginator(paginator.num_pages)
+
+    #firstcat = Category.objects.filter(statut=True)[:1]
+    # for item in firstcat:
+    #     first= item
+    #     act_articles= first.article_cat.all()
     
 
 
     data ={
         'categories': categories,
         'articles': pop_articles,
-        'act_articles': act_articles,
+        #'act_articles': act_articles,
         'article': article,
         'articlee': articlee,
+        'pag_Article': pag_Article,
         
     }
 
@@ -253,7 +258,7 @@ def comment(request):
         commentaire.article = article
         commentaire.save()
         succes = True
-        reponse = 'Votre message a bien été envoyé, nous vous remercions de nous avoir contacté !'
+        reponse = 'Votre commentaire a bien été enregisté '
     except:
         succes = False
         reponse = "Un probleme survennu lors de l'enregistrement"
