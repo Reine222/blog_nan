@@ -326,13 +326,16 @@
                     </td>
                     <td>
                         <table class="tile_info">
-                        <tr>
+                        {% for cat in catego %}
+                            <tr>
                             <td>
-                            <p><i class="fa fa-square blue"></i>Tecnology </p>
+                            <p><i class="fa fa-square blue"></i>{{cat.nom}} </p>
                             </td>
-                            <td>30%</td>
+                            <td>{{cat.count}}%</td>
                         </tr>
-                        <tr>
+                        {% endfor %}
+                        
+                        {% comment %} <tr>
                             <td>
                             <p><i class="fa fa-square green"></i>Art </p>
                             </td>
@@ -355,7 +358,7 @@
                             <p><i class="fa fa-square red"></i>Others </p>
                             </td>
                             <td>30%</td>
-                        </tr>
+                        </tr> {% endcomment %}
                         </table>
                     </td>
                     </tr>

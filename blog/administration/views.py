@@ -4,10 +4,13 @@ from blogger.models import *
 # Create your views here.
 
 def index_dash(request):
+    # catego= Article.objects.filter(categorie__pk = pk ).order_by('-id')
+    # categorie__id = pk
+    catego= Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
     articles= Article.objects.filter(statut=True, valider=True )
     articlee= Article.objects.filter(statut=True, valider=False )
-    context = {"article": article, "articles": articles, "articlee": articlee,}
+    context = {"catego": catego, "article": article, "articles": articles, "articlee": articlee,}
     
     return render(request, 'pages/index_dash.html', context)
 
