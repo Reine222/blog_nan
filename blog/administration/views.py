@@ -26,8 +26,8 @@ def post_valid_dash(request):
 def profil_visiteur_dash(request):
     return render(request, 'pages/profil_visiteur_dash.html')
 
-def form_aricle_dash(request):
-    return render(request, 'pages/form_aricle_dash.html')
+def form_article_dash(request):
+    return render(request, 'pages/form_article_dash.html')
 
 def form_profil_dash(request):
     return render(request, 'pages/form_profil_dash.html')
