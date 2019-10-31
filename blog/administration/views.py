@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from blogger.models import *
+from django.template import RequestContext
 
 # Create your views here.
 
@@ -86,8 +87,6 @@ def tables_visiteur_dash(request):
     return render(request, 'pages/tables_visiteur_dash.html')
 
 
-from django.contrib.auth.context_processors.auth import RequestContext
-# Create your views here.
 
 def ip_adrress(request):
     return render(request, 'pages/index.html', context=RequestContext(request))
