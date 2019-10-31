@@ -14,7 +14,7 @@ from contact.urls import *
 
 # Create your views here.
 def home(request):
-    
+    profil= Profile.objects.all()[:1]
     pop_articles = Article.objects.filter(statut=True, valider=True)[:4]
     categories = Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
@@ -52,6 +52,7 @@ def home(request):
         #'arti': arti,
         'articlee': articlee,
         'pag_Article': pag_Article,
+        "profil": profil,
         
     }
 
@@ -82,7 +83,7 @@ def selectCat(request, id):
 
 
 def category(request):
-    
+    profil= Profile.objects.all()[:1]
     catego = Category.objects.filter(statut=True)
     articles = Article.objects.filter(statut=True)
     pop_articles = Article.objects.filter(statut=True)[:4]
@@ -106,6 +107,8 @@ def category(request):
         pag_Article = paginator(paginator.num_pages)
     
     data= {
+        "profil": profil,
+    
         'catego': catego,
         'articles': articles,
         'articles': pop_articles,
@@ -116,6 +119,7 @@ def category(request):
     return render(request, 'pages/category.html', data )
 
 def archive(request):
+    profil= Profile.objects.all()[:1]
     catego = Category.objects.filter(statut=True)
     articles = Article.objects.filter(statut=True)
     pop_articles = Article.objects.filter(statut=True)[:4]
@@ -139,19 +143,22 @@ def archive(request):
         pag_Article = paginator(paginator.num_pages)
 
     data= {
+        
+    
         'catego': catego,
         'articles': articles,
         'articles': pop_articles,
         'categories': categories,
         'article': article,
         'pag_Article':pag_Article,
+        "profil": profil,
     }
     return render(request, 'pages/archive.html', data)
 
 
 def single(request, pk):
     arts = Article.objects.get(pk=pk)
-   
+    profil= Profile.objects.all()[:1]
     pop_articles = Article.objects.filter(statut=True)[:4]
     categories = Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
@@ -173,6 +180,8 @@ def single(request, pk):
         pag_Article = paginator(paginator.num_pages)
 
     data ={
+        "profile": profile,
+    
         'arts': arts,
         'articles': pop_articles,
         'categories': categories,

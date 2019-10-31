@@ -182,26 +182,26 @@
                         </form>
                     </div>
 
-                    <div class="single-widget protfolio-widget">
-                        <img class="img-fluid" src="/static/img/blog/user2.png" alt="">
-                        <a href="#">
-                            <h4>Charlie ALison Barber</h4>
-                        </a>
-                        <div class="desigmation">
-                            <p>Senior blog writer</p>
-                        </div>
-                        <p>
-                            Boot camps have its supporters andit sdetractors. Some people do not understand why you
-                            should have to spend
-                            money on boot camp whenyou can get. Boot camps have itssuppor ters andits detractors.
-                        </p>
-                        <ul>
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
-                        </ul>
-                    </div>
+                    {% for pro in profil %}
+					<div class="single-widget protfolio-widget">
+						<img class="img-fluid" src="{{pro.image.url}}" alt="">
+						<a href="#">
+							<h4>{{pro.user}}</h4>
+						</a>
+						<div class="desigmation">
+							<p>{{pro.fonction}}</p>
+						</div>
+						<p>
+							{{pro.description}}
+						</p>
+						<ul>
+							<li><a href="{{pro.fb_lien}}"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="{{pro.tweet_lien}}"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="{{pro.ball_lien}"><i class="fa fa-dribbble"></i></a></li>
+							<li><a href="{{pro.Be_lien}"><i class="fa fa-behance"></i></a></li>
+						</ul>
+					</div>
+					{% endfor %}
 
                     <div class="single-widget popular-posts-widget">
                         <h4 class="title">Popular Posts</h4>
