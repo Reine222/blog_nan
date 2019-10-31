@@ -37,6 +37,8 @@ GRAPHENE = {
 }
 
 INSTALLED_APPS = [
+    'admin_interface',
+    'colorfield',
     'graphene_django',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -81,7 +83,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'configuration.context_processors.config',
-                'administration.context_processors.config',
+                'administration.context_processors.visitor_ip_address',
             ],
         },
     },
