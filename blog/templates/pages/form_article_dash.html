@@ -29,18 +29,21 @@
             <a href="{% url 'index_dash' %}" class="site_title"><i class="fa fa-paw"></i> <span>Admin Membre</span></a>
             </div>
 
+            {% for pro in profil %}
             <div class="clearfix"></div>
 
             <!-- menu profile quick info -->
             <div class="profile clearfix">
             <div class="profile_pic">
-                <img src="/static/admin/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="{{pro.image.url}}" alt="..." class="img-circle profile_img">
             </div>
             <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>Jr Gba</h2>
+                <h2>{{pro.user}}</h2>
             </div>
             </div>
+            <!-- /menu profile quick info -->
+            {% endfor %}
             <!-- /menu profile quick info -->
 
             <br />
@@ -98,9 +101,11 @@
             <nav class="nav navbar-nav">
             <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
-                <a href="{% url 'form_profil_dash' %}" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="/static/admin/images/img.jpg" alt="">John Doe
+                {% for pro in profil %}
+                <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                    <img src="{{pro.image.url}}" alt="">{{pro.user}}
                 </a>
+                {% endfor %}
                 <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item"  href="{% url 'form_profil_dash' %}"> Profile</a>
                     <a class="dropdown-item"  href="javascript:;">
@@ -115,21 +120,23 @@
                 <li role="presentation" class="nav-item dropdown open">
                 <a href="javascript:;" class="dropdown-toggle info-number" id="navbarDropdown1" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">1</span>
+                    <span class="badge bg-green">{{ commente.count }}</span>
                 </a>
                 <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
+                    {% for com in commente %}
                     <li class="nav-item">
-                    <a class="dropdown-item">
-                        <span class="image"><img src="/static/admin/images/img.jpg" alt="Profile Image" /></span>
+                        <a class="dropdown-item" href="{% url 'project_detail_dash' com.pk %}">
+                        <span class="image"><img src="{{com.photo.url}}" alt="Profile Image" /></span>
                         <span>
-                        <span>John Smith</span>
-                        <span class="time">3 mins ago</span>
+                            <span>{{com.sujet}}</span>
+                            <span class="time">{{com.article.user_id}}</span>
                         </span>
                         <span class="message">
-                        Film festivals used to be do-or-die moments for movie makers. They were where...
+                            {{com.message}}
                         </span>
-                    </a>
+                        </a>
                     </li>
+                    {% endfor %}
                 </ul>
                 </li>
             </ul>
@@ -170,67 +177,20 @@
                 </div>
                 <div class="x_content">
 
-                    <form class="form-horizontal form-label-left" novalidate>
-
                     <p>La publication de cette article devra attendre la validation de l'admin
                     </p>
                     <span class="section">Veuillez remplir les differents champs</span>
 
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="name">Titre <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6">
-                        <input id="name" class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="both name(s) e.g Jon Doe" required="required" type="text">
-                        </div>
-                    </div>
+                    
 
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="telephone">Category <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6">
-                        <select id="heard" class="form-control" required>
-                            <option value="">Choose..</option>
-                            <option value="press">Technology</option>
-                            <option value="net">Internet</option>
-                            <option value="mouth">Fashion</option>
-                        </select>
-                        </div>
-                    </div>
+                    
 
 
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="textarea">Description <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6">
-                        <textarea id="textarea" required="required" name="textarea" class="form-control"></textarea>
-                        </div>
-                    </div>
+                    
 
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="textarea">Contenu <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6">
-                        <textarea id="textarea" required="required" name="textarea" class="form-control"></textarea>
-                        </div>
-                    </div>
+                    
 
-                    <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="textarea">Image <span class="required">*</span>
-                        </label>
-                        <div class="col-md-6 col-sm-6">
-                        <input type="file" >
-                        </div>
-                    </div>
-                      
-
-                    <div class="ln_solid"></div>
-                    <div class="form-group">
-                        <div class="col-md-6 offset-md-3">
-                        <button type="submit" class="btn btn-primary">Cancel</button>
-                        <button id="send" type="submit" class="btn btn-success">Publier</button>
-                        </div>
-                    </div>
-                    </form>
+                    
                 </div>
                 </div>
             </div>
