@@ -89,6 +89,6 @@ def tables_visiteur_dash(request):
 
 
 def ip_adrress(request):
-    return render(request, 'pages/index.html', context=RequestContext(request))
+    return render(request, 'bases/base.html', context=RequestContext(request))
 
 
