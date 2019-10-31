@@ -15,7 +15,11 @@ def index_dash(request):
     return render(request, 'pages/index_dash.html', context)
 
 def admin_visiteur_dash(request):
-    return render(request, 'pages/admin_visiteur_dash.html')
+    commentaires = Commentaire.objects.filter(statut=True)
+    data = {
+        'commentaire': commentaires,
+    }
+    return render(request, 'pages/admin_visiteur_dash.html', data)
 
 def detail_visiteur_dash(request):
     return render(request, 'pages/detaill_visiteur_dash.html')
@@ -62,3 +66,12 @@ def tables_dash(request):
 
 def tables_visiteur_dash(request):
     return render(request, 'pages/tables_visiteur_dash.html')
+
+
+from django.contrib.auth.context_processors.auth import RequestContext
+# Create your views here.
+
+def ip_adrress(request):
+    return render(request, 'pages/index.html', context=RequestContext(request))
+
+

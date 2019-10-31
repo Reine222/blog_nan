@@ -49,6 +49,8 @@ class Commentaire(models.Model):
         return self.sujet
 
 
+
+
 class Profile(models.Model):
 
     # Appel de user
