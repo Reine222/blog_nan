@@ -4,7 +4,7 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from twilio.rest import Client
+#from twilio.rest import Client
 from django.http import JsonResponse
 import json
 from datetime import datetime, timedelta, timezone, tzinfo
