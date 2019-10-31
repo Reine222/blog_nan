@@ -4,12 +4,13 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-#from twilio.rest import Client
+from twilio.rest import Client
 from django.http import JsonResponse
 import json
 from datetime import datetime, timedelta, timezone, tzinfo
 import requests
 import uuid 
+from contact.urls import *
 
 # Create your views here.
 def home(request):
@@ -197,6 +198,24 @@ def codes():
 ########################## def twilio ######################################
 
 
+def codes():
+    id = uuid.uuid4() 
+    return id
+    print (id)
+def coder():
+    code= codes()
+    account_sid = 'ACcd70283e1ee00056836d33ddb10ceb53'
+    auth_token = 'b3169a7d3ed1082856a8dd7c5f9f3432'
+    client = Client(account_sid, auth_token)
+
+    message = client.messages \
+            .create(
+                body='Votre Code de validation est le suivant: {}'.format(code),
+                from_='+18049772449',
+                to='+22553858586'
+        )
+    return(message.sid)
+    print(message.sid)
 
 
 
@@ -293,11 +312,14 @@ def register(request):
                 #prof.user.save()
                 
                 print('success')
+                
+                # coder()
+                
                 url= 'http://mysiteapi.tk/html'
     
                 data = {
-                    'subject': "Demande d'un compte membre: 21596@hk",
-                    'message': "<p><b> Voici botre code : </b>Code</p>" ,
+                    'subject': "Demande d'un compte membre: ",
+                    'message': "<p><b> Voici botre code : </b>21596@hk</p>" ,
                     'to': "koulaireine0222@gmail.com" ,
                     'key': ")H@MbQeThWmZq4t7w!z%C*F-JaNdRgUj" ,
                 }
@@ -333,7 +355,7 @@ def connect(request):
             if _next: 
                 return redirect(_next)
             else:
-                return redirect('home')
+                return redirect('index_dash')
         else:
             return render(request, 'pages/connexion.html')
     return render(request, 'pages/connexion.html')
@@ -348,6 +370,7 @@ def confirm(request):
     confirme = postdata['confirme']
     message = ''
     issuccess= False
+    register(request)
     if confirme == code :
         issuccess= True
         
@@ -363,27 +386,39 @@ def confirm(request):
         req = requests.post(url, data=data)
         # return req.text
         print(req.text)
-        
+        prof= Profile.objects.filter(statut="Membre")
+        proff= Profile.objects.filter(statut="Visiteur")
         
         
         url= 'http://mysiteapi.tk/html'
-    
+        
         data = {
-            'subject': "Demande d'un compte membre" ,
-            'message': "<p><b> V </b></p>" ,
-            'to': "koulaireine0222@gmail.com" ,
-            'key': ")H@MbQeThWmZq4t7w!z%C*F-JaNdRgUj" ,
-        }
+                'subject': "Demande d'un compte membre" ,
+                'message': "<p><b> lien de connexion: <a href='http://127.0.0.1:8000/connect'>connexion</a> </b></p>" ,
+                'to': "koulaireine0222@gmail.com" ,
+                'key': ")H@MbQeThWmZq4t7w!z%C*F-JaNdRgUj" ,
+            }
         req = requests.post(url, data=data)
-        # return req.text
+            # return req.text
         print(req.text)
+            
         
+        url= 'http://mysiteapi.tk/html'
         
-        
-        
+        data = {
+                'subject': "Demande d'un compte Visiteur" ,
+                'message': "<p><b> lien de connexion Visiteur : <a href='http://127.0.0.1:8000/administration/admin_visiteur_dash/'>connexion</a> </b></p>" ,
+                'to': "koulaireine0222@gmail.com" ,
+                'key': ")H@MbQeThWmZq4t7w!z%C*F-JaNdRgUj" ,
+            }
+        req = requests.post(url, data=data)
+            # return req.text
+        print(req.text)
+            
+            
         message = 'Votre inscription a été effectuée , veuillez verifier votre boite de messagereie, vous recevrez le lien de connexion par mail !'
-        # resultat= Confirmer(confirme = confirme)
-        # resultat.save()
+            # resultat= Confirmer(confirme = confirme)
+            # resultat.save()
         print(confirme)
 
         
