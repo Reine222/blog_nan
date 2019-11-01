@@ -158,7 +158,8 @@
                 <a href="{% url 'tables_visiteur_dash' %}">
                     <div class="tile-stats">
                     <div class="icon"><i class="fa fa-bar-chart-o"></i></div>
-                    <div class="count">179</div>
+                    
+                    <div class="count">{{ commentaire.count }}</div>
                     <h3>Mes commentaires</h3>
                     <p>La liste de tous mes commentaires.</p>
                     </div>
@@ -257,7 +258,7 @@
                             <div class="flex">
                                 <ul class="list-inline count2">
                                 <li>
-                                    <h3>123</h3>
+                                    <h3>{{ article.count }}</h3>
                                     <span>Articles</span>
                                 </li>
                                 <li>
@@ -265,7 +266,7 @@
                                     <span>Likes</span>
                                 </li>
                                 <li>
-                                    <h3>123</h3>
+                                    <h3>{{ commentaire.count }}</h3>
                                     <span>Comments</span>
                                 </li>
                                 </ul>

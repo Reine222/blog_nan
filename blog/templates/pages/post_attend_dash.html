@@ -36,7 +36,9 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
             <div class="profile_pic">
+                
                 <img src="{{pro.image.url}}" alt="..." class="img-circle profile_img">
+        
             </div>
             <div class="profile_info">
                 <span>Welcome,</span>
@@ -192,9 +194,13 @@
                          <div class="col-md-55">
                         <div class="thumbnail">
                         <div class="image view view-first">
+                            
                             <img style="width: 100%; display: block;" src="{{ arti.image.url }}" alt="image" />
+                            
                             <div class="mask">
+                            <a href="{% url 'detail_visiteur_dash' arti.id %}">
                             <p>{{ arti.titre }}</p>
+                            </a>
                             <div class="tools tools-bottom">
                                 <a href="{% url 'project_detail_dash' arti.pk %}"><i class="fa fa-link"></i></a>
                                 <a href="{% url 'form_article_dash' %}"><i class="fa fa-pencil"></i></a>
