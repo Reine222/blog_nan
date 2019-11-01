@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="/static/admin/images/favicon.ico" type="image/ico" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="/static/echarts.min.js"></script>
 
     <title>NaN bblog </title>
 
@@ -209,9 +211,20 @@
                 </div>
                 <div class="x_content">
                     <div class="col-md-9 col-sm-12 ">
-                    <div class="demo-container" style="height:280px">
-                        <div id="chart_plot_02" class="demo-placeholder"></div>
+                    
+
+
+                    <div style="height:280px">
+
+                        <div id="main" style="width:100%; height:400px;"></div>
+                        
                     </div>
+
+
+
+                    <br>
+                    <br>
+                    <br><br><br>
                     <div class="tiles">
                         <div class="col-md-4 tile">
                         <span>Total Article</span>
@@ -276,49 +289,15 @@
 
         </div>
         <!-- /page content -->
-
-        <div class="row">
-
-            <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="x_panel tile fixed_height_320 overflow_hidden">
-                <div class="x_title">
-                <h2>Category </h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                    <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Settings 1</a>
-                        <a class="dropdown-item" href="#">Settings 2</a>
-                        </div>
-                    </li>
-                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                <table class="" style="width:100%">
-                    <tr>
-                    <th style="width:37%;">
-                        <p>Top 5</p>
-                    </th>
-                    <th>
-                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-                        <p class="">Category</p>
-                        </div>
-                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-                        <p class="">Nbres</p>
-                        </div>
-                    </th>
-                    </tr>
-                    <tr>
-                    <td>
-                        <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
-                    </td>
-                    <td>
-                        <table class="tile_info">
+        <div>
+            <h2>Category </h2>
+            <p>Top 5</p>
+            <div class="col-md-6 tile_info">
+                <div id="mainlang" style="width:100%; height:400px;"></div>
+            </div>
+            <div class="col-md-6">
+                <p class="">Category</p>
+                <table class="tile_info">
                         {% for cat in catego %}
                             <tr>
                             <td>
@@ -326,51 +305,16 @@
                             </td>
                             <td>{{cat.count}}%</td>
                         </tr>
-                        {% endfor %}
-                        
-                        {% comment %} <tr>
-                            <td>
-                            <p><i class="fa fa-square green"></i>Art </p>
-                            </td>
-                            <td>10%</td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <p><i class="fa fa-square purple"></i>Fashion </p>
-                            </td>
-                            <td>20%</td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <p><i class="fa fa-square aero"></i>Symbian </p>
-                            </td>
-                            <td>15%</td>
-                        </tr>
-                        <tr>
-                            <td>
-                            <p><i class="fa fa-square red"></i>Others </p>
-                            </td>
-                            <td>30%</td>
-                        </tr> {% endcomment %}
-                        </table>
-                    </td>
-                    </tr>
+                        {% endfor %}      
                 </table>
-                </div>
             </div>
-            </div>
-
-           
         </div>
-
 
         <!-- /page content -->
 
         <!-- footer content -->
         <footer>
-        <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="#">Colorlib</a>
-        </div>
+        
         <div class="clearfix"></div>
         </footer>
         <!-- /footer content -->
@@ -418,5 +362,80 @@
     <!-- Custom Theme Scripts -->
     <script src="/static/admin/build/js/custom.min.js"></script>
 	
+
+
+
+    <script>
+        var myPielang = echarts.init(document.getElementById('mainlang'));
+        var optionlang = {
+            title : {
+                text: 'Population',
+                subtext: 'CI',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left',
+                data: [
+                    
+                    'pop',
+                    'pop',
+                    'pop',
+                    'pop',
+                    
+                    
+                ]
+            },
+            series : [
+                {
+                    name: 'Population',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data:[
+                        
+                        {value:'25', name:'pop'},
+                        {value:'25', name:'pop'},
+                        {value:'25', name:'pop'},
+                        {value:'25', name:'pop'},
+                        
+                    ],
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myPielang.setOption(optionlang);
+    </script>
+
+    <script>
+var myPie = echarts.init(document.getElementById('main'));
+        
+var optionl ={
+    xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line'
+    }]
+};
+
+myPie.setOption(optionl);
+
+    </script>
 </body>
 </html>
