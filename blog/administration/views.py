@@ -18,15 +18,23 @@ def index_dash(request):
     return render(request, 'pages/index_dash.html', context)
 
 def admin_visiteur_dash(request):
+    article = Article.objects.filter(statut=True, valider=True)
     commentaires = Commentaire.objects.filter(statut=True)
     data = {
         'commentaire': commentaires,
+        'article':article,
     }
     return render(request, 'pages/admin_visiteur_dash.html', data)
 
-def detail_visiteur_dash(request):
+def detail_visiteur_dash(request, id):
+    selectarticle = Article.objects.get(pk=id)
+    commentaire = Commentaire.objects.filter(article__id = id)
     profil= Profile.objects.all()[:1]
-    context = {"profil": profil,}
+    context = {
+        "profil": profil,
+        'selectarticle':selectarticle,
+        'commentaire':commentaire,
+        }
     return render(request, 'pages/detaill_visiteur_dash.html', context)
 
 def page_dash(request):
@@ -84,7 +92,11 @@ def tables_dash(request):
     return render(request, 'pages/tables_dash.html', context)
 
 def tables_visiteur_dash(request):
-    return render(request, 'pages/tables_visiteur_dash.html')
+    article= Article.objects.filter(statut=True)
+    data = {
+        'article':article,
+    }
+    return render(request, 'pages/tables_visiteur_dash.html', data)
 
 
 
