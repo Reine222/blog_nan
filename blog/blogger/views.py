@@ -15,11 +15,11 @@ from contact.urls import *
 # Create your views here.
 def home(request):
     profil= Profile.objects.all()[:1]
-    pop_articles = Article.objects.filter(statut=True, valider=True)[:4]
+    pop_articles = Article.objects.filter(statut=True, valider=True)[:5]
     categories = Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
     articlee= Article.objects.filter(statut=True, valider=True)[1:]
-    #arti= Article.objects.filter(statut=True, valider=True )
+    arti= Article.objects.filter(statut=True, valider=True )
 
     if request.POST :
         recherche = request.POST.get('search2')
@@ -157,6 +157,7 @@ def archive(request):
 
 
 def single(request, pk):
+    
     arts = Article.objects.get(pk=pk)
     profil= Profile.objects.all()[:1]
     pop_articles = Article.objects.filter(statut=True)[:4]
@@ -181,7 +182,7 @@ def single(request, pk):
 
     data ={
         "profile": profil,
-    
+        
         'arts': arts,
         'articles': pop_articles,
         'categories': categories,
