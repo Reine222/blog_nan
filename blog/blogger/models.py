@@ -49,11 +49,6 @@ class Commentaire(models.Model):
         return self.sujet
 
 
-# class Like(models.Model):
-#     nombre = models.IntegerField()
-#     user = models.ForeignKey(User, on_delete= models.CASCADE, null=True) 
-#     article = models.ForeignKey(Article, on_delete= models.CASCADE, related_name="ArticleLike")
-
 
 
 class Profile(models.Model):

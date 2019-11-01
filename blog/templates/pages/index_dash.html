@@ -300,12 +300,14 @@
             <div class="col-md-6">
                 <p class="">Category</p>
                 <table class="tile_info">
+                <p class="">Nombre article</p>
+                
                         {% for cat in catego %}
                             <tr>
                             <td>
                             <p><i class="fa fa-square blue"></i>{{cat.nom}} </p>
                             </td>
-                            <td>{{cat.count}}%</td>
+                            <td>{{cat.article_cat.count}} article(s)</td>
                         </tr>
                         {% endfor %}      
                 </table>
@@ -480,7 +482,7 @@
         var myPielang = echarts.init(document.getElementById('mainlang'));
         var optionlang = {
             title : {
-                text: 'Population',
+                text: 'les top des Categories',
                 subtext: 'CI',
                 x:'center'
             },
@@ -492,27 +494,24 @@
                 orient: 'vertical',
                 left: 'left',
                 data: [
-                    
-                    'pop',
-                    'pop',
-                    'pop',
-                    'pop',
+                    {% for cat in catego %}
+                    '{{cat.nom}}',
+                    {% endfor %}
                     
                     
                 ]
             },
             series : [
                 {
-                    name: 'Population',
+                    name: 'Categorie',
                     type: 'pie',
                     radius : '55%',
                     center: ['50%', '60%'],
                     data:[
+                        {% for item in catego %}
+                        {value:'{{item.article_cat.count}}', name:'{{item.nom}}'},
+                        {% endfor %}
                         
-                        {value:'25', name:'pop'},
-                        {value:'25', name:'pop'},
-                        {value:'25', name:'pop'},
-                        {value:'25', name:'pop'},
                         
                     ],
                     itemStyle: {
