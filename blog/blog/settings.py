@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'configuration.apps.ConfigurationConfig',
     'administration.apps.AdministrationConfig',
     'api.apps.ApiConfig',
+    'visite.apps.VisiteConfig',
     'rest_framework',
     'tinymce',
     'filebrowser',
