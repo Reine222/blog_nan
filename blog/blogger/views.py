@@ -180,7 +180,7 @@ def single(request, pk):
         pag_Article = paginator(paginator.num_pages)
 
     data ={
-        "profile": profile,
+        "profile": profil,
     
         'arts': arts,
         'articles': pop_articles,
