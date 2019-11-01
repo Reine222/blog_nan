@@ -197,53 +197,61 @@
 
                     <!-- Default form contact -->
         <div class="text-center border border-light p-5" action="#!">
+            <div>
+                {{ message}}
+            </div>
+            
 
             <h1 class=" mb-4">Ecrire un article</h1>
-
+        <form method="POST" action="{% url 'form_article_dash' %}" enctype='multipart/form-data'>
+            {% csrf_token %}
             <!-- Name -->
-            <input type="text" id="defaultContactFormName" v-model="titre" class="form-control mb-4" placeholder="Titre">
+            <input type="text" id="defaultContactFormName" name="titre" class="form-control mb-4" placeholder="Titre" aria-required="true" >
 
             <label>Username</label>
-            <select v-model="username" class="browser-default custom-select mb-4">
+            <select name="username" class="browser-default custom-select mb-4">
                 <option value="" selected>Choose option</option>
                 {% for pro in prof %}
-                    <option value="1" >{{pro.user}}</option>
+                    <option value="{{pro.id}}" >{{pro.user}}</option>
                 {% endfor %}
             </select>
 
             <label>Categorie</label>
-            <select v-model="categorie" class="browser-default custom-select mb-4">
+            <select name="categorie" class="browser-default custom-select mb-4">
                 <option value="" selected>Choose option</option>
                 {% for cat in catego %}
-                <option value="1">{{ cat.nom }}</option>
+                <option value="{{ cat.id }}">{{ cat.nom }}</option>
                 {% endfor %}
             </select>
 
 
             <label>Image</label>
-            <input v-model="image" type="file" id="" class="form-control mb-4" placeholder="Image Article">
+            <input name="image" type="file"  class="form-control mb-4" placeholder="Image Article">
             <!-- Email -->
             
 
             <!-- Subject -->
             <div class="form-group">
                 <label>Description</label>
-                <textarea v-model="description" class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Description..." ></textarea>
+                <textarea name="description" class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Description..." ></textarea>
             </div>
 
             <!-- Message -->
             <div class="form-group">
                 <label>Contenu de l'article</label>
-                <textarea v-model="content" class="form-control rounded-0"  id="exampleFormControlTextarea2" rows="3" placeholder="Message..." ></textarea>
+                <textarea name="content" class="form-control rounded-0"  id="exampleFormControlTextarea2" rows="3" placeholder="Message..." ></textarea>
             </div>
 
             <!-- Copy -->
 
             <!-- Send button -->
             <br>
-            <button v-on:click="sendregister" class="btn btn-info btn-block" type="submit">Send</button>
+            <button class="btn btn-info btn-block" type="submit">Send</button>
 
         </div>
+
+        </form>
+            
 <!-- Default form contact -->
 
 
@@ -289,7 +297,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/static/newsletter.js"></script>
-    
+   
 	
 </body>
 </html>

@@ -19,6 +19,7 @@ def index_dash(request):
     comment= Commentaire.objects.filter(statut=True, article__valider=True)
     catego= Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
+    articl= Article.objects.filter(statut=True, valider=True )
     articles= Article.objects.filter(statut=True, valider=True )
     articlee= Article.objects.filter(statut=True, valider=False )
     context = {"catego": catego, "comment": comment, "profil": profil, "article": article, "articles": articles, "articlee": articlee,}
@@ -72,11 +73,49 @@ def profil_visiteur_dash(request):
     return render(request, 'pages/profil_visiteur_dash.html')
 
 def form_article_dash(request):
+    message = ''
     catego= Category.objects.filter(statut=True)
     prof= Profile.objects.all()
     profil= Profile.objects.all()[:1]
     commente= Commentaire.objects.filter(statut=True, article__valider=True)
     context = {"commente": commente, "profil": profil,"prof": prof,"catego": catego}
+    
+    if request.method == "POST":
+        titre = request.POST.get('titre')
+        user_id = request.POST.get('username')
+        user = Profile.objects.get(pk=user_id)
+        categorie_id = request.POST.get('categorie')
+        categorie = Category.objects.get(pk=2)
+        image = request.FILES.get('image')
+        description = request.POST.get('description')
+        content = request.POST.get('content')
+        #print("Titre=",titre,"userid=",user_id,"categori_id=",categorie_id,"image=",image,'description=',description,'content=',content)
+        print('user=',user)
+        print('categorie=', categorie)
+        
+        article = Article()
+        article.titre = titre
+        article.user_id = user
+        article.categorie = categorie
+        article.image = image
+        article.description = description
+        article.valider = False
+        article.content = content
+        article.save()
+        #message="Article enregistré avec succes !"
+        
+        #message="Probleme d'enregistrement!"
+        #print('error enregistrement')
+
+    context = {
+        "commente": commente, 
+        "profil": profil,
+        "prof": prof,
+        "catego": catego,
+        'message':message,
+    }
+
+
     return render(request, 'pages/form_article_dash.html', context)
 
 def form_profil_dash(request):
