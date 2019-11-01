@@ -1,8 +1,16 @@
 from django.shortcuts import render
 from blogger.models import *
 from django.template import RequestContext
+from django.http import HttpResponseRedirect
 
 # Create your views here.
+
+
+
+
+
+
+
 
 def index_dash(request):
     # catego= Article.objects.filter(categorie__pk = pk ).order_by('-id')
@@ -64,9 +72,11 @@ def profil_visiteur_dash(request):
     return render(request, 'pages/profil_visiteur_dash.html')
 
 def form_article_dash(request):
+    catego= Category.objects.filter(statut=True)
+    prof= Profile.objects.all()
     profil= Profile.objects.all()[:1]
     commente= Commentaire.objects.filter(statut=True)
-    context = {"commente": commente, "profil": profil,}
+    context = {"commente": commente, "profil": profil,"prof": prof,"catego": catego}
     return render(request, 'pages/form_article_dash.html', context)
 
 def form_profil_dash(request):
