@@ -15,6 +15,10 @@ urlpatterns = [
     path('form_article_dash/', views.form_article_dash, name='form_article_dash'),
     path('form_profil_dash/', views.form_profil_dash, name='form_profil_dash'),
     path('profil_visiteur_dash/', views.profil_visiteur_dash, name='profil_visiteur_dash'),
+    path('login/', views.connect, name='login'),
+    path('connect/', views.connecter, name='connecter'),
+    path('deconnect/', views.deconection, name='connecter'),
+    path('deconnexion/', views.deconection, name='deconnect'),
     
     path('tables_visiteur_dash/', views.tables_visiteur_dash, name='tables_visiteur_dash'),
 ]

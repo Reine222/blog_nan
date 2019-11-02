@@ -13,6 +13,34 @@ import uuid
 from contact.urls import *
 
 # Create your views here.
+def connect(request):
+    if request.method == "POST":
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        print(username,password)
+        _next = request.GET.get('next', False)
+        user = authenticate(username=username, password=password)
+        print(user)
+        if user is not None and user.is_active:
+            
+            print("user is login")
+
+            login(request, user)
+            if _next: 
+                return redirect(_next)
+            else:
+                return redirect('index_dash')
+        else:
+            return render(request, 'pages/connexion.html')
+    return render(request, 'pages/connexion.html')
+
+def deconection(request):
+    logout(request)
+    return redirect('connect')
+
+
+
+@login_required(login_url='connect')
 def home(request):
     profil= Profile.objects.all()[:1]
     pop_articles = Article.objects.filter(statut=True, valider=True)[:5]
@@ -348,31 +376,7 @@ def register(request):
 
     return render(request,'pages/register.html')
 
-def connect(request):
-    if request.method == "POST":
-        username=request.POST.get('username')
-        password=request.POST.get('password')
-        print(username,password)
-        _next = request.GET.get('next', False)
-        user = authenticate(username=username, password=password)
-        print(user)
-        if user is not None and user.is_active:
-            
-            
-            print("user is login")
 
-            login(request, user)
-            if _next: 
-                return redirect(_next)
-            else:
-                return redirect('index_dash')
-        else:
-            return render(request, 'pages/connexion.html')
-    return render(request, 'pages/connexion.html')
-
-def deconection(request):
-    logout(request)
-    return redirect('connect')
 
 def confirm(request):
     postdata = json.loads(request.body.decode('utf-8'))
