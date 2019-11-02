@@ -191,6 +191,7 @@
                     {% for artic in articles %}
                         <div class="col-md-55">
                         <div class="thumbnail">
+                        <a href="{% url 'project_detail_dash' artic.pk  %}">
                         <div class="image view view-first">
                             <img style="width: 100%; display: block;" src="{{ artic.image.url }}" alt="image" />
                             <div class="mask">
@@ -202,9 +203,11 @@
                             </div>
                             </div>
                         </div>
+                       
                         <div class="caption">
                             <p>{{ artic.description }}</p>
                         </div>
+                        </a>
                         </div>
                     </div>
                     {% endfor %}

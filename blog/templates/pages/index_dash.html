@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="/static/echarts.min.js"></script>
 
-    <title>NaN bblog </title>
+    <title>NaN | Not a Number </title>
 
     <!-- Bootstrap -->
     <link href="/static/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -292,14 +292,16 @@
         </div>
         <!-- /page content -->
         <div>
-            <h2>Category </h2>
-            <p>Top 5</p>
-            <div class="col-md-6 tile_info">
-                <div id="mainlang" style="width:100%; height:400px;"></div>
-            </div>
+            
+            <!-- <div class="col-md-6 tile_info">
+                 <div id="mainlang" style="width:100%; height:400px;"></div> -->
+            </div> -->
             <div class="col-md-6">
-                <p class="">Category</p>
-                <table class="tile_info">
+                    <h2>Category </h2>
+                    
+                <!-- <p class="">Category</p> -->
+                <div id="mainlang" style="width:100%; height:400px;"></div>
+                <!-- <table class="tile_info">
                 <p class="">Nombre article</p>
                 
                         {% for cat in catego %}
@@ -310,7 +312,7 @@
                             <td>{{cat.article_cat.count}} article(s)</td>
                         </tr>
                         {% endfor %}      
-                </table>
+                </table> -->
             </div>
         </div>
 
@@ -372,15 +374,26 @@
         // specify chart configuration item and data
         optiongolang = {
             xAxis: {
-                type: 'category',
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                type: 'Article',
+                data: [
+                    {% for item in aticles %}
+                    "{{ item.titre|truncatewords:'1'}}",
+
+                    {% endfor %}
+                ]
             },
             yAxis: {
-                type: 'value'
+                type: 'Nombre commentaire'
             },
             series: [{
-                data: [820, 932, 901, 934, 1290, 1330, 1320],
-                type: 'line'
+                data: [
+                {% for item in aticles %}
+                    "{{ item.ArticleCommentaire.count }}",
+
+                {% endfor %}
+
+                ],
+                type: 'bar'
             }]
         };
 
@@ -402,75 +415,7 @@
                 data: [5, 20, 36, 10, 10, 20]
             }]
         };
-        //option 
-        var optionlang = {
-            title : {
-                text: 'Population',
-                subtext: "Cote d'Ivoire",
-                x:'center'
-            },
-            tooltip : {
-                trigger: 'item',
-                formatter: "{a} <br/>{b} : {c} ({d}%)"
-            },
-            legend: {
-                orient: 'vertical',
-                left: 'left',
-                data: ['Autre','Bete','Dioula','Baoule','Lobi']
-            },
-            series : [
-                {
-                    name: 'Population',
-                    type: 'pie',
-                    radius : '55%',
-                    center: ['50%', '60%'],
-                    data:[
-                        {value:25, name:'Autre'},
-                        {value:10, name:'Bete'},
-                        {value:30, name:'Dioula'},
-                        {value:30, name:'Baoule'},
-                        {value:5, name:'Lobi'}
-                    ],
-                    itemStyle: {
-                        emphasis: {
-                            shadowBlur: 10,
-                            shadowOffsetX: 0,
-                            shadowColor: 'rgba(0, 0, 0, 0.5)'
-                        }
-                    }
-                }
-            ]
-        };
-        optiongause = {
-            title : {
-                text: 'Composition des etudiants de NaN',
-                subtext: "Piscine",
-                x:'center'
-            },
-            tooltip : {
-                formatter: "{a} <br/>{b} : {c}%"
-            },
-            toolbox: {
-                feature: {
-                    restore: {},
-                    saveAsImage: {}
-                }
-            },
-            series: [
-                {
-                    name: 'Variation',
-                    type: 'gauge',
-                    detail: {formatter:'{value}%'},
-                    data: [{value: 50, name: 'Candidats en ligne'}]
-                }
-            ]
-        };
-        setInterval(function () {
-            optiongause.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
-            gause.setOption(optiongause, true);
-        },2000);
-        // use configuration item and data specified to show chart
-        myChart.setOption(optiongolang);
+        
         myLang.setOption(optionlang);
         gause.setOption(optiongause);
     </script>
