@@ -18,9 +18,10 @@ def index_dash(request):
     # catego= Article.objects.filter(categorie__pk = pk ).order_by('-id')
     # categorie__id = pk
     profil= Profile.objects.all()[:1]
-    comment= Commentaire.objects.filter(statut=True)
+    comment= Commentaire.objects.filter(statut=True, article__valider=True)
     catego= Category.objects.filter(statut=True)
     article= Article.objects.filter(statut=True)
+    articl= Article.objects.filter(statut=True, valider=True )
     articles= Article.objects.filter(statut=True, valider=True )
     articlee= Article.objects.filter(statut=True, valider=False )
     context = {"catego": catego, "comment": comment, "profil": profil, "article": article, "articles": articles, "articlee": articlee,}
@@ -29,7 +30,7 @@ def index_dash(request):
 
 def admin_visiteur_dash(request):
     article = Article.objects.filter(statut=True, valider=True)
-    commentaires = Commentaire.objects.filter(statut=True)
+    commentaires = Commentaire.objects.filter(statut=True, article__valider=True)
     data = {
         'commentaire': commentaires,
         'article':article,
@@ -38,7 +39,7 @@ def admin_visiteur_dash(request):
 
 def detail_visiteur_dash(request, id):
     selectarticle = Article.objects.get(pk=id)
-    commentaire = Commentaire.objects.filter(article__id = id)
+    commentaire = Commentaire.objects.filter(article__id = id, article__valider=True)
     profil= Profile.objects.all()[:1]
     context = {
         "profil": profil,
@@ -52,7 +53,7 @@ def page_dash(request):
 
 def post_attend_dash(request):
     profil= Profile.objects.all()[:1]
-    commente= Commentaire.objects.filter(statut=True)
+    commente= Commentaire.objects.filter(statut=True, article__valider=True)
     articlee= Article.objects.filter(statut=True, valider=False )
     context = {"articlee": articlee, "commente": commente, "profil": profil,}
     return render(request, 'pages/post_attend_dash.html', context)
@@ -78,7 +79,8 @@ def form_article_dash(request):
     catego= Category.objects.filter(statut=True)
     prof= Profile.objects.all()
     profil= Profile.objects.all()[:1]
-    commente= Commentaire.objects.filter(statut=True)
+    commente= Commentaire.objects.filter(statut=True, article__valider=True)
+    context = {"commente": commente, "profil": profil,"prof": prof,"catego": catego}
     
     if request.method == "POST":
         titre = request.POST.get('titre')
@@ -120,22 +122,22 @@ def form_article_dash(request):
 
 def form_profil_dash(request):
     profil= Profile.objects.all()[:1]
-    commente= Commentaire.objects.filter(statut=True)
+    commente= Commentaire.objects.filter(statut=True, article__valider=True)
     context = {"commente": commente,"profil": profil, "profil": profil,}
     return render(request, 'pages/form_profil_dash.html', context)
 
 def project_detail_dash(request, pk):
     profil= Profile.objects.all()[:1]
-    commente= Commentaire.objects.filter(statut=True)
+    commente= Commentaire.objects.filter(statut=True, article__valider=True)
     article= Article.objects.filter(statut=True)
     art = Article.objects.get(pk=pk)
-    comment = Commentaire.objects.filter(article__pk = pk ).order_by('-id')
+    comment = Commentaire.objects.filter(article__valider = True, article__pk = pk).order_by('-id')
     context = {"article": article,"profil": profil, "commente": commente, "art": art, "comment": comment,}
     return render(request, 'pages/project_detail_dash.html', context)
 
 def tables_dash(request):
     profil= Profile.objects.all()[:1]
-    commente= Commentaire.objects.filter(statut=True)
+    commente= Commentaire.objects.filter(statut=True, article__valider=True)
     article= Article.objects.filter(statut=True)
     context = {"article": article, "commente": commente,"profil": profil,}
     return render(request, 'pages/tables_dash.html', context)
