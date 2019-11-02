@@ -58,12 +58,12 @@ def post_attend_dash(request):
 
 def post_partage_dash(request):
     profil= Profile.objects.all()[:1]
-    context = {"profil": profil,}
+    context = {"profil": profil,"commente": commente,}
     return render(request, 'pages/post_partage_dash.html', context)
 
 def post_valid_dash(request):
     profil= Profile.objects.all()[:1]
-    
+    commente= Commentaire.objects.filter(statut=True, article__valider=True)
     articles= Article.objects.filter(statut=True, valider=True )
     context = {"articles": articles, "profil": profil,}
     

@@ -37,8 +37,8 @@ GRAPHENE = {
 }
 
 INSTALLED_APPS = [
-    # 'admin_interface',
-    'colorfield',
+    'admin_interface',
+    'colorfield', 
     'graphene_django',
     'django.contrib.admin',
     'django.contrib.auth',
