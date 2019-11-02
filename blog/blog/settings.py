@@ -104,7 +104,7 @@ DATABASES = {
         'USER': 'groupereine',
         'PASSWORD': 'nan0980',
         'HOST': '51.77.197.177',
-        'PORT': '5432',
+        'PORT': '5432',..
     }
 }
 
