@@ -2,6 +2,8 @@ from django.shortcuts import render
 from blogger.models import *
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -83,19 +85,19 @@ def form_article_dash(request):
     if request.method == "POST":
         titre = request.POST.get('titre')
         user_id = request.POST.get('username')
-        user = Profile.objects.get(pk=user_id)
+        # user = User.objects.get(pk=5)
         categorie_id = request.POST.get('categorie')
         categorie = Category.objects.get(pk=2)
         image = request.FILES.get('image')
         description = request.POST.get('description')
         content = request.POST.get('content')
         #print("Titre=",titre,"userid=",user_id,"categori_id=",categorie_id,"image=",image,'description=',description,'content=',content)
-        print('user=',user)
+        # print('user=',user)
         print('categorie=', categorie)
         
         article = Article()
         article.titre = titre
-        article.user_id = user
+        # article.user_id = user
         article.categorie = categorie
         article.image = image
         article.description = description

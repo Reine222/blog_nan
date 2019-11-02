@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="/static/echarts.min.js"></script>
 
-    <title>NaN bblog </title>
+    <title>NaN | Not a Number </title>
 
     <!-- Bootstrap -->
     <link href="/static/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -318,7 +318,7 @@
                             <td>{{cat.article_cat.count}} article(s)</td>
                         </tr>
                         {% endfor %}      
-                </table>
+                </table> -->
             </div>
         </div>
 
@@ -380,15 +380,26 @@
         // specify chart configuration item and data
         optiongolang = {
             xAxis: {
-                type: 'category',
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                type: 'Article',
+                data: [
+                    {% for item in aticles %}
+                    "{{ item.titre|truncatewords:'1'}}",
+
+                    {% endfor %}
+                ]
             },
             yAxis: {
-                type: 'value'
+                type: 'Nombre commentaire'
             },
             series: [{
-                data: [820, 932, 901, 934, 1290, 1330, 1320],
-                type: 'line'
+                data: [
+                {% for item in aticles %}
+                    "{{ item.ArticleCommentaire.count }}",
+
+                {% endfor %}
+
+                ],
+                type: 'bar'
             }]
         };
 
