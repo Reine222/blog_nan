@@ -17,7 +17,7 @@ urlpatterns = [
     path('profil_visiteur_dash/', views.profil_visiteur_dash, name='profil_visiteur_dash'),
     path('login/', views.connect, name='login'),
     path('connect/', views.connecter, name='connecter'),
-    path('deconnect/', views.deconection, name='connecter'),
+    path('deconnect/', views.deconection, name='deconnecte'),
     path('deconnexion/', views.deconection, name='deconnect'),
     
     path('tables_visiteur_dash/', views.tables_visiteur_dash, name='tables_visiteur_dash'),

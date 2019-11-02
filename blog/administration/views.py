@@ -53,7 +53,7 @@ def connecter(request):
 
 
 
-@login_required(login_url='connect')
+@login_required(login_url='login')
 def index_dash(request):
     # catego= Article.objects.filter(categorie__pk = pk ).order_by('-id')
     # categorie__id = pk
