@@ -11,8 +11,7 @@
 						{{log.titre}}
 					</h1>
 				{% endfor %}
-					<p class="text-white link-nav"><a href="index.html">Home </a> <span class="lnr lnr-arrow-right"></span> <a href="category.html">
-							Category</a></p>
+					
 				</div>
 			</div>
 		</div>
@@ -22,21 +21,7 @@
 	<!-- Start main body Area -->
 	<div class="main-body section-gap">
 		<div class="container box_1170">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-				{% for cart in catego %}
-				<li class="nav-item">
-                	<a class="nav-link" id="tab{{forloop.counter|add:'1'}}" data-toggle="tab" href="#world-tab{{forloop.counter|add:'1'}}" role="tab" aria-controls="world-tab-2" aria-selected="false">{{ cart.nom }}</a>
-                </li>
-                                
-                {% endfor %}
-				</ul>
-			</div>
-		</nav>
+		
 		<hr>
 		<br>
 			<div class="row">
@@ -51,7 +36,7 @@
 										<img class="post-img img-fluid" src="{{art.image.url}}" alt="">
 									</figure>
 									<h3>
-										<a href="blog-details.html">{{art.titre}}</a>
+										<a href="{% url 'single' art.pk %}">{{art.titre}}</a>
 									</h3>
 									<p>{{art.description}}</p>
 									<a href="{% url 'single' art.pk %}" class="primary-btn text-uppercase mt-15">continue Reading</a>
