@@ -1,19 +1,59 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from blogger.models import *
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+
 
 
 # Create your views here.
+def connect(request):
+    if request.method == "POST":
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        print(username,password)
+        _next = request.GET.get('next', False)
+        user = authenticate(username=username, password=password)
+        print(user)
+        if user is not None and user.is_active:
+            
+            print("user is login")
+
+            login(request, user)
+            if _next: 
+                return redirect(_next)
+            else:
+                return redirect('index_dash')
+        else:
+            return render(request, 'pages/connexion.html')
+    return render(request, 'pages/connexion.html')
+
+def connecter(request):
+    if request.method == "POST":
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        print(username,password)
+        _next = request.GET.get('next', False)
+        user = authenticate(username=username, password=password)
+        print(user)
+        if user is not None and user.is_active:
+            
+            print("user is login")
+
+            login(request, user)
+            if _next: 
+                return redirect(_next)
+            else:
+                return redirect('admin_visiteur_dash')
+        else:
+            return render(request, 'pages/connexion.html')
+    return render(request, 'pages/connexion.html')
 
 
 
-
-
-
-
-
+@login_required(login_url='login')
 def index_dash(request):
     # catego= Article.objects.filter(categorie__pk = pk ).order_by('-id')
     # categorie__id = pk
@@ -28,6 +68,7 @@ def index_dash(request):
     
     return render(request, 'pages/index_dash.html', context)
 
+@login_required(login_url='connecter')
 def admin_visiteur_dash(request):
     article = Article.objects.filter(statut=True, valider=True)
     commentaires = Commentaire.objects.filter(statut=True, article__valider=True)
@@ -154,4 +195,11 @@ def tables_visiteur_dash(request):
 def ip_adrress(request):
     return render(request, 'bases/base.html', context=RequestContext(request))
 
+def deconection(request):
+    logout(request)
+    return redirect('connect')
+
+def deconexion(request):
+    logout(request)
+    return redirect('connecter')
 
